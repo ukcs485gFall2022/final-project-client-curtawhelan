@@ -20,6 +20,6 @@ struct Styler: OCKStyler {
         OCKAnimationStyle()
     }
     var appearance: OCKAppearanceStyler {
-        OCKAppearanceStyle()
+        AppearanceStyle()
     }
 }
