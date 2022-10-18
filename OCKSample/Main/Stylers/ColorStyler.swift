@@ -13,10 +13,16 @@ import UIKit
 struct ColorStyler: OCKColorStyler {
     #if os(iOS)
     var label: UIColor {
-        FontColorKey.defaultValue
+        FontColorKey.altValue
+    }
+    var secondaryLabel: UIColor {
+        FontColorKey.altValue
     }
     var tertiaryLabel: UIColor {
-        TintColorKey.defaultValue
+        TintColorKey.altValue
+    }
+    var customBackground: UIColor {
+        TintColorKey.altValue
     }
     #endif
 }
