@@ -34,12 +34,12 @@ struct LoginView: View {
     var body: some View {
         VStack {
             // Change the title to the name of your application
-            Text("CareKit Sample App")
+            Text("Trek Track")
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 .padding()
             // Change this image to something that represents your application
-            Image("exercise.jpg")
+            Image("trek-track-logo")
                 .resizable()
                 .frame(width: 150, height: 150, alignment: .center)
                 .clipShape(Circle())
@@ -62,6 +62,11 @@ struct LoginView: View {
             .padding()
 
             VStack(alignment: .leading) {
+                TextField("Email", text: $email)
+                    .padding()
+                    .background(.white)
+                    .cornerRadius(20.0)
+                    .shadow(radius: 10.0, x: 20, y: 10)
                 TextField("Username", text: $usersname)
                     .padding()
                     .background(.white)
@@ -72,14 +77,14 @@ struct LoginView: View {
                     .background(.white)
                     .cornerRadius(20.0)
                     .shadow(radius: 10.0, x: 20, y: 10)
-                TextField("Email", text: $email)
-                    .padding()
-                    .background(.white)
-                    .cornerRadius(20.0)
-                    .shadow(radius: 10.0, x: 20, y: 10)
 
                 switch signupLoginSegmentValue {
                 case 1:
+                    TextField("Email", text: $email)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
                     TextField("First Name", text: $firstName)
                         .padding()
                         .background(.white)
