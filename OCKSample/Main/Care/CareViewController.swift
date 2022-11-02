@@ -175,6 +175,8 @@ class CareViewController: OCKDailyPageViewController {
                                     on date: Date) -> [UIViewController]? {
         switch task.id {
         case TaskID.steps:
+            // swiftlint:disable:next line_length
+            let linkView = LinkView(title: .init("Recipe Ideas"), links: [.website("https://www.budgetbytes.com/top-20-recipes-eating-healthy-budget/", title: "Healthy Recipes From BudgetBytes")])
             let view = NumericProgressTaskView(
                 task: task,
                 eventQuery: OCKEventQuery(for: date),
@@ -182,9 +184,9 @@ class CareViewController: OCKDailyPageViewController {
                 .padding([.vertical], 20)
                 .careKitStyle(CustomStylerKey.defaultValue)
 
-            return [view.formattedHostingController()]
+            return [view.formattedHostingController(), linkView.formattedHostingController()]
         case TaskID.stretch:
-            return [OCKInstructionsTaskViewController(task: task,
+            return [OCKSimpleTaskViewController(task: task,
                                                      eventQuery: .init(for: date),
                                                      storeManager: self.storeManager)]
 
@@ -199,20 +201,17 @@ class CareViewController: OCKDailyPageViewController {
 
         // Create a card for the doxylamine task if there are events for it on this day.
         case TaskID.doxylamine:
-
-            return [OCKChecklistTaskViewController(
-                task: task,
-                eventQuery: .init(for: date),
-                storeManager: self.storeManager)]
+            // swiftlint:disable:next line_length
+            return [OCKGridTaskViewController(task: task, eventQuery: .init(for: date), storeManager: self.storeManager)]
 
         case TaskID.nausea:
             var cards = [UIViewController]()
             // dynamic gradient colors
             let nauseaGradientStart = UIColor { traitCollection -> UIColor in
-                return traitCollection.userInterfaceStyle == .light ? #colorLiteral(red: 0.06253327429, green: 0.6597633362, blue: 0.8644603491, alpha: 1) : #colorLiteral(red: 0, green: 0.2858072221, blue: 0.6897063851, alpha: 1)
+                return traitCollection.userInterfaceStyle == .light ? #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1) : #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             }
             let nauseaGradientEnd = UIColor { traitCollection -> UIColor in
-                return traitCollection.userInterfaceStyle == .light ? #colorLiteral(red: 0, green: 0.2858072221, blue: 0.6897063851, alpha: 1) : #colorLiteral(red: 0.06253327429, green: 0.6597633362, blue: 0.8644603491, alpha: 1)
+                return traitCollection.userInterfaceStyle == .light ? #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1) : #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
             }
 
             // Create a plot comparing nausea to medication adherence.
