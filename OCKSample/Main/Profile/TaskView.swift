@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct TaskView: View {
+    @StateObject var viewModel = TaskViewModel()
+
     var body: some View {
         NavigationView {
             Form {
@@ -18,7 +20,9 @@ struct TaskView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") {
-
+                        Task {
+                            await viewModel.addTask()
+                        }
                     }
                 }
 
@@ -41,8 +45,8 @@ struct TaskView_Previews: PreviewProvider {
 private extension TaskView {
     var general: some View {
         Section {
-            TextField("Task Title", text: .constant(""))
-            TextField("Description", text: .constant(""))
+            TextField("Task Title", text: $viewModel.title)
+            TextField("Instructions", text: $viewModel.instructions)
             TextField("Task Motivation", text: .constant(""))
         } header: {
             Text("General")
