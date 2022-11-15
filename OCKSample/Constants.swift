@@ -74,14 +74,28 @@ enum Constants {
     static let requestSync = "requestSync"
     static let progressUpdate = "progressUpdate"
     static let finishedAskingForPermission = "finishedAskingForPermission"
-    static let completedFirstSyncAfterLogin = "completedFirstSyncAfterLogin"
+    static let shouldRefreshView = "shouldRefreshView"
     static let userLoggedIn = "userLoggedIn"
     static let storeInitialized = "storeInitialized"
     static let userTypeKey = "userType"
+    static let card = "card"
 }
 
 enum MainViewPath {
     case tabs
+}
+
+enum CareKitCard: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case button = "Button"
+    case checklist = "Checklist"
+    case featured = "Featured"
+    case grid = "Grid"
+    case instruction = "Instruction"
+    case labeledValue = "Labeled Value"
+    case link = "Link"
+    case numericProgress = "Numeric Progress"
+    case simple = "Simple"
 }
 
 enum TaskID {
