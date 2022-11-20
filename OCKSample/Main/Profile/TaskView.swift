@@ -52,6 +52,11 @@ private extension TaskView {
             TextField("Task Title", text: $viewModel.title)
             TextField("Instructions", text: $viewModel.instructions)
             TextField("Task Motivation", text: $viewModel.motivation)
+            Picker("Card Style", selection: $viewModel.selectedCard) {
+                ForEach(CareKitCard.allCases) { item in
+                    Text(item.rawValue)
+                }
+            }
         } header: {
             Text("General")
         }
