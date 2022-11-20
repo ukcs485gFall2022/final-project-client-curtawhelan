@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct TaskView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) var presentationMode
+
     @StateObject var viewModel = TaskViewModel()
 
     var body: some View {
@@ -22,13 +25,14 @@ struct TaskView: View {
                     Button("Done") {
                         Task {
                             await viewModel.addTask()
+                            dismissHandler()
                         }
                     }
                 }
 
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel", role: .cancel) {
-
+                        dismissHandler()
                     }
                 }
             }
@@ -47,10 +51,20 @@ private extension TaskView {
         Section {
             TextField("Task Title", text: $viewModel.title)
             TextField("Instructions", text: $viewModel.instructions)
-            TextField("Task Motivation", text: .constant(""))
+            TextField("Task Motivation", text: $viewModel.motivation)
         } header: {
             Text("General")
         }
         .headerProminence(.increased)
+    }
+}
+
+private extension TaskView {
+    func dismissHandler() {
+        if #available(iOS 15, *) {
+            dismiss()
+        } else {
+            presentationMode.wrappedValue.dismiss()
+        }
     }
 }

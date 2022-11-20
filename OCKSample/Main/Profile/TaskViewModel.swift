@@ -13,6 +13,7 @@ import os.log
 class TaskViewModel: ObservableObject {
     @Published var title = ""
     @Published var instructions = ""
+    @Published var motivation = ""
     @Published var selectedCard: CareKitCard = .button
     @Published var error: AppError? {
         willSet {
