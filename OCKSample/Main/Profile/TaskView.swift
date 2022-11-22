@@ -9,10 +9,12 @@
 import SwiftUI
 
 struct TaskView: View {
+
     @Environment(\.dismiss) private var dismiss
     @Environment(\.presentationMode) var presentationMode
 
     @StateObject var viewModel = TaskViewModel()
+    @State var repeating = true
 
     var body: some View {
         NavigationView {
@@ -49,11 +51,19 @@ struct TaskView_Previews: PreviewProvider {
 private extension TaskView {
     var general: some View {
         Section {
+
+            Picker("Type of Task", selection: $viewModel.selectedTypeOfTask) {
+                ForEach(TypeOfTask.allCases) { type in
+                    Text(type.rawValue.capitalized)
+                }
+            }
+            .pickerStyle(.segmented)
+
             TextField("Title", text: $viewModel.title)
 
             TextField("Instructions", text: $viewModel.instructions)
 
-            TextField("Motivation", text: $viewModel.motivation)
+            TextField("Motivation (Optional)", text: $viewModel.motivation)
 
             Picker("Card Style", selection: $viewModel.selectedCard) {
                 ForEach(CareKitCard.allCases) { item in
@@ -61,11 +71,15 @@ private extension TaskView {
                 }
             }
 
+            Toggle("Select Specific Day", isOn: $repeating)
+
             Picker("Schedule", selection: $viewModel.selectedDay) {
                 ForEach(WeekDays.allCases) { day in
                     Text(day.rawValue.capitalized)
                 }
             }
+            .disabled(repeating == false)
+
         } header: {
             Text("General")
         }

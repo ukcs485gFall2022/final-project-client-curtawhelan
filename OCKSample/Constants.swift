@@ -116,6 +116,12 @@ enum WeekDays: String, CaseIterable, Identifiable {
     var id: Self { self }
 }
 
+enum TypeOfTask: String, CaseIterable, Identifiable {
+    case normal, healthKit
+
+    var id: Self { self }
+}
+
 enum UserType: String, Codable {
     case patient                           = "Patient"
     case none                              = "None"
