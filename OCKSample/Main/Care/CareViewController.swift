@@ -134,6 +134,7 @@ class CareViewController: OCKDailyPageViewController {
                                           prepare listViewController: OCKListViewController, for date: Date) {
         let isCurrentDay = Calendar.current.isDate(date, inSameDayAs: Date())
 
+        /*
         // Only show the tip view on the current date
         if isCurrentDay {
             if Calendar.current.isDate(date, inSameDayAs: Date()) {
@@ -148,6 +149,7 @@ class CareViewController: OCKDailyPageViewController {
                 listViewController.appendView(tipView, animated: false)
             }
         }
+        */
 
         Task {
             let tasks = await self.fetchTasks(on: date)
