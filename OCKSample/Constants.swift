@@ -110,6 +110,12 @@ enum TaskID {
     }
 }
 
+enum WeekDays: String, CaseIterable, Identifiable {
+    case sunday, monday, tuesday, wednesday, thursday, friday, saturday
+
+    var id: Self { self }
+}
+
 enum UserType: String, Codable {
     case patient                           = "Patient"
     case none                              = "None"

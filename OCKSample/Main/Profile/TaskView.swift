@@ -49,12 +49,21 @@ struct TaskView_Previews: PreviewProvider {
 private extension TaskView {
     var general: some View {
         Section {
-            TextField("Task Title", text: $viewModel.title)
+            TextField("Title", text: $viewModel.title)
+
             TextField("Instructions", text: $viewModel.instructions)
-            TextField("Task Motivation", text: $viewModel.motivation)
+
+            TextField("Motivation", text: $viewModel.motivation)
+
             Picker("Card Style", selection: $viewModel.selectedCard) {
                 ForEach(CareKitCard.allCases) { item in
                     Text(item.rawValue)
+                }
+            }
+
+            Picker("Schedule", selection: $viewModel.selectedDay) {
+                ForEach(WeekDays.allCases) { day in
+                    Text(day.rawValue.capitalized)
                 }
             }
         } header: {
