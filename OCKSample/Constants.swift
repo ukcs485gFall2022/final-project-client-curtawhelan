@@ -98,6 +98,11 @@ enum CareKitCard: String, CaseIterable, Identifiable {
     case simple = "Simple"
 }
 
+enum CarePlanID: String {
+     case health // Add custom id's for your Care Plans, these are examples
+     case checkIn
+ }
+
 enum TaskID {
     static let doxylamine = "doxylamine"
     static let nausea = "nausea"

@@ -15,7 +15,7 @@ class TaskViewModel: ObservableObject {
     @Published var title = ""
     @Published var instructions = ""
     @Published var motivation = ""
-    
+
     @Published var selectedCard: CareKitCard = .button
     @Published var selectedDay: WeekDays = .monday
     @Published var selectedTypeOfTask: TypeOfTask = .normal
