@@ -28,6 +28,10 @@ class ProfileViewModel: ObservableObject {
     @Published var state = ""
     @Published var zipCode = ""
     @Published var allergies = ""
+    @Published var email = ""
+    @Published var messagingNumbers = ""
+    @Published var phoneNumbers = ""
+    @Published var otherContactInfo = ""
     @Published var isShowingSaveAlert = false
     @Published var isPresentingAddTask = false
     @Published var isPresentingContact = false
