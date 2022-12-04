@@ -7,15 +7,29 @@
 //
 
 import SwiftUI
+import UIKit
+import CareKitStore
+import CareKit
+import os.log
 
-struct MyContactView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct MyContactView: UIViewControllerRepresentable {
+
+    @State var storeManager = StoreManagerKey.defaultValue
+
+    func makeUIViewController(context: Context) -> some UIViewController {
+        let viewController = MyContactViewController(storeManager: storeManager)
+        return UINavigationController(rootViewController: viewController)
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewControllerType,
+                                context: Context) {
+
     }
 }
 
 struct MyContactView_Previews: PreviewProvider {
     static var previews: some View {
-        MyContactView()
+        MyContactView(storeManager: Utility.createPreviewStoreManager())
+            .accentColor(Color(TintColorKey.defaultValue))
     }
 }

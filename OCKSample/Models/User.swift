@@ -25,6 +25,7 @@ struct User: ParseUser {
     // Custom properties
     var lastTypeSelected: String?
     var userTypeUUIDs: [String: UUID]?
+    var profilePicture: ParseFile?
 }
 
 // MARK: Default Implementation

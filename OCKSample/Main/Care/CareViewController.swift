@@ -134,13 +134,17 @@ class CareViewController: OCKDailyPageViewController {
                                           prepare listViewController: OCKListViewController, for date: Date) {
         let isCurrentDay = Calendar.current.isDate(date, inSameDayAs: Date())
 
-        /*
+        /* only need to keep teh title, text, custom style
         // Only show the tip view on the current date
         if isCurrentDay {
             if Calendar.current.isDate(date, inSameDayAs: Date()) {
                 // Add a non-CareKit view into the list
                 let tipTitle = "Benefits of exercising"
                 let tipText = "Learn how activity can promote a healthy pregnancy."
+                let url =
+                let customView = CustomFeaturedContentView()
+                
+                
                 let tipView = TipView()
                 tipView.headerView.titleLabel.text = tipTitle
                 tipView.headerView.detailLabel.text = tipText
@@ -149,7 +153,7 @@ class CareViewController: OCKDailyPageViewController {
                 listViewController.appendView(tipView, animated: false)
             }
         }
-        */
+         */
 
         Task {
             let tasks = await self.fetchTasks(on: date)

@@ -96,6 +96,12 @@ extension OCKSynchronizedStoreManager {
         contacts.forEach { potential in
             if foundContacts.first(where: { $0.id == potential.id }) == nil {
                 contactsNotInStore.append(potential)
+                guard var mutableContact = potential as? OCKContact else {
+                    contactsNotInStore.append(potential)
+                    return
+                }
+                mutableContact.carePlanUUID = carePlanUUID
+                contactsNotInStore.append(mutableContact)
             }
         }
 
