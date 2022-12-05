@@ -37,7 +37,7 @@ struct ProfileView: View {
                                 Text(viewModel.sex.rawValue)
                                     .tag(OCKBiologicalSex.other(viewModel.sexOtherField))
                             }
-                            TextField("Allergies", text: $viewModel.allergies)
+                            TextField("Allergies", text: $viewModel.allergy)
                         }
                         Section(header: Text("Contact")) {
                             TextField("Street", text: $viewModel.street)
@@ -93,7 +93,6 @@ struct ProfileView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        print("Add task tapped!")
                         viewModel.isPresentingAddTask = true
                     }, label: {
                         Text("Add Task")

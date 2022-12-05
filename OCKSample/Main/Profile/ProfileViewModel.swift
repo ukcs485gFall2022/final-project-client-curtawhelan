@@ -27,7 +27,7 @@ class ProfileViewModel: ObservableObject {
     @Published var city = ""
     @Published var state = ""
     @Published var zipCode = ""
-    @Published var allergies = ""
+    @Published var allergy = ""
     @Published var email = ""
     @Published var messagingNumbers = ""
     @Published var phoneNumbers = ""
