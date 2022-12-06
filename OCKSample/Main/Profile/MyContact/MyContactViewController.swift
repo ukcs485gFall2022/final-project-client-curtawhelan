@@ -88,6 +88,15 @@ class MyContactViewController: OCKListViewController {
         query.sortDescriptors.append(.familyName(ascending: true))
         query.sortDescriptors.append(.givenName(ascending: true))
 
+        let filterdContacts = self.contacts.filter { convertedContact in
+            Logger.contact.info("Contact filtered: \(convertedContact.id)")
+            if convertedContact.id == personUUIDString {
+                return true
+            } else {
+                return false
+            }
+        }
+
         self.contacts = try await storeManager.store.fetchAnyContacts(query: query)
         self.displayContacts()
     }
