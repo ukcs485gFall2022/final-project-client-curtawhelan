@@ -17,22 +17,33 @@ import ParseSwift
 
 class ProfileViewModel: ObservableObject {
     // MARK: Public read, private write properties
+    // Publishers for Patient
     @Published var firstName = ""
     @Published var lastName = ""
     @Published var birthday = Date()
     @Published var sex: OCKBiologicalSex = .other("other")
     @Published var sexOtherField = "other"
     @Published var note = ""
+    @Published var allergy = ""
+
+    // Publishers for Contact
     @Published var street = ""
     @Published var city = ""
     @Published var state = ""
     @Published var zipCode = ""
-    @Published var allergy = ""
+
     var emailLabel = "Email 1" // publish if want to update in the view
     @Published var emailValue = ""
-    @Published var messagingNumbers = ""
-    @Published var phoneNumbers = ""
-    @Published var otherContactInfo = ""
+
+    var messagingLabel = "Messaging Number 1"
+    @Published var messagingValue = ""
+
+    var phoneNumbersLabel = "Phone Number 1"
+    @Published var phoneNumbersValue = ""
+
+    var otherContactInfoLabel = "Other Contact Info 1"
+    @Published var otherContactInfoValue = ""
+
     @Published var isShowingSaveAlert = false
     @Published var isPresentingAddTask = false
     @Published var isPresentingContact = false
@@ -100,6 +111,35 @@ class ProfileViewModel: ObservableObject {
             }
             if let address = newValue?.address {
                 street = address.street
+                city = address.city
+                state = address.state
+                zipCode = address.postalCode
+            } else {
+                street = ""
+                city = ""
+                state = ""
+                zipCode = ""
+            }
+            if let currentMessagingNumber = newValue?.messagingNumbers?.first {
+                messagingLabel = currentMessagingNumber.label
+                messagingValue = currentMessagingNumber.value
+            } else {
+                messagingLabel = ""
+                messagingValue = ""
+            }
+            if let currentPhoneNumber = newValue?.phoneNumbers?.first {
+                phoneNumbersLabel = currentPhoneNumber.label
+                phoneNumbersValue = currentPhoneNumber.value
+            } else {
+                phoneNumbersLabel = ""
+                phoneNumbersValue = ""
+            }
+            if let currentOtherContactInfo = newValue?.otherContactInfo?.first {
+                otherContactInfoLabel = currentOtherContactInfo.label
+                otherContactInfoValue = currentOtherContactInfo.value
+            } else {
+                otherContactInfoLabel = ""
+                otherContactInfoValue = ""
             }
         }
     }
@@ -342,6 +382,7 @@ extension ProfileViewModel {
     }
 
     @MainActor
+    // swiftlint:disable:next cyclomatic_complexity
     func saveContact() async throws {
 
         if var contactToUpdate = contact {
@@ -369,7 +410,6 @@ extension ProfileViewModel {
             }
 
             let potentialEmail = OCKLabeledValue(label: emailLabel, value: emailValue)
-
             if var emailAddresses = contact?.emailAddresses {
                 if emailAddresses.first != potentialEmail {
                     contactHasBeenUpdated = true
@@ -379,6 +419,42 @@ extension ProfileViewModel {
             } else {
                 contactHasBeenUpdated = true
                 contactToUpdate.emailAddresses = [potentialEmail]
+            }
+
+            let potentialMessagingNumber = OCKLabeledValue(label: messagingLabel, value: messagingValue)
+            if var messagingNumbers = contact?.messagingNumbers {
+                if messagingNumbers.first != potentialMessagingNumber {
+                    contactHasBeenUpdated = true
+                    messagingNumbers[0] = potentialMessagingNumber
+                    contactToUpdate.messagingNumbers = messagingNumbers
+                }
+            } else {
+                contactHasBeenUpdated = true
+                contactToUpdate.messagingNumbers = [potentialMessagingNumber]
+            }
+
+            let potentialPhoneNumber = OCKLabeledValue(label: phoneNumbersLabel, value: phoneNumbersValue)
+            if var phoneNumbers = contact?.phoneNumbers {
+                if phoneNumbers.first != potentialPhoneNumber {
+                    contactHasBeenUpdated = true
+                    phoneNumbers[0] = potentialPhoneNumber
+                    contactToUpdate.phoneNumbers = phoneNumbers
+                }
+            } else {
+                contactHasBeenUpdated = true
+                contactToUpdate.phoneNumbers = [potentialPhoneNumber]
+            }
+
+            let potentialOtherContactInfo = OCKLabeledValue(label: otherContactInfoLabel, value: otherContactInfoValue)
+            if var otherContactInfo = contact?.otherContactInfo {
+                if otherContactInfo.first != potentialOtherContactInfo {
+                    contactHasBeenUpdated = true
+                    otherContactInfo[0] = potentialOtherContactInfo
+                    contactToUpdate.otherContactInfo = otherContactInfo
+                }
+            } else {
+                contactHasBeenUpdated = true
+                contactToUpdate.otherContactInfo = [potentialOtherContactInfo]
             }
 
             if contactHasBeenUpdated {

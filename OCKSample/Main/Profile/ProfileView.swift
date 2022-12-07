@@ -45,9 +45,9 @@ struct ProfileView: View {
                             TextField("State", text: $viewModel.state)
                             TextField("Postal Code", text: $viewModel.zipCode)
                             TextField("E-mail", text: $viewModel.emailValue)
-                            TextField("Messaging Number", text: $viewModel.messagingNumbers)
-                            TextField("Phone Number", text: $viewModel.phoneNumbers)
-                            TextField("Other Contact Info", text: $viewModel.otherContactInfo)
+                            TextField("Messaging Number", text: $viewModel.messagingValue)
+                            TextField("Phone Number", text: $viewModel.phoneNumbersValue)
+                            TextField("Other Contact Info", text: $viewModel.otherContactInfoValue)
                         }
                     }
                 }
