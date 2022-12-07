@@ -44,10 +44,10 @@ struct ProfileView: View {
                             TextField("City", text: $viewModel.city)
                             TextField("State", text: $viewModel.state)
                             TextField("Postal Code", text: $viewModel.zipCode)
-                            TextField("E-mail", text: $viewModel.email)
+                            TextField("E-mail", text: $viewModel.emailValue)
                             TextField("Messaging Number", text: $viewModel.messagingNumbers)
-                            TextField("Phone Number", text: $viewModel.messagingNumbers)
-                            TextField("Other Contact Info", text: $viewModel.messagingNumbers)
+                            TextField("Phone Number", text: $viewModel.phoneNumbers)
+                            TextField("Other Contact Info", text: $viewModel.otherContactInfo)
                         }
                     }
                 }

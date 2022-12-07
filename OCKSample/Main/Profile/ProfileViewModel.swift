@@ -28,7 +28,8 @@ class ProfileViewModel: ObservableObject {
     @Published var state = ""
     @Published var zipCode = ""
     @Published var allergy = ""
-    @Published var email = ""
+    var emailLabel = "Email 1" // publish if want to update in the view
+    @Published var emailValue = ""
     @Published var messagingNumbers = ""
     @Published var phoneNumbers = ""
     @Published var otherContactInfo = ""
@@ -88,7 +89,20 @@ class ProfileViewModel: ObservableObject {
         }
     }
 
-    private var contact: OCKContact?
+    private var contact: OCKContact? {
+        willSet {
+            if let currentEmail = newValue?.emailAddresses?.first {
+                emailLabel = currentEmail.label
+                emailValue = currentEmail.value
+            } else {
+                emailLabel = ""
+                emailValue = ""
+            }
+            if let address = newValue?.address {
+                street = address.street
+            }
+        }
+    }
     private var isSettingProfilePictureForFirstTime = true
     private var cancellables: Set<AnyCancellable> = []
 
@@ -149,7 +163,7 @@ class ProfileViewModel: ObservableObject {
                 Logger.profile.error("Error: Could not find contact with id \"\(uuid)\". It's possible they have never been saved.")
                 return
             }
-            self.observePatient(currentPatient)
+            self.observeContact(currentContact)
 
         } catch {
             // swiftlint:disable:next line_length
@@ -352,6 +366,19 @@ extension ProfileViewModel {
             if contact?.address != potentialAddress {
                 contactHasBeenUpdated = true
                 contactToUpdate.address = potentialAddress
+            }
+
+            let potentialEmail = OCKLabeledValue(label: emailLabel, value: emailValue)
+
+            if var emailAddresses = contact?.emailAddresses {
+                if emailAddresses.first != potentialEmail {
+                    contactHasBeenUpdated = true
+                    emailAddresses[0] = potentialEmail
+                    contactToUpdate.emailAddresses = emailAddresses
+                }
+            } else {
+                contactHasBeenUpdated = true
+                contactToUpdate.emailAddresses = [potentialEmail]
             }
 
             if contactHasBeenUpdated {
