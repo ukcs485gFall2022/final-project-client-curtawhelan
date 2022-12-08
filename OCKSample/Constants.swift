@@ -98,9 +98,11 @@ enum CareKitCard: String, CaseIterable, Identifiable {
     case simple = "Simple"
 }
 
-enum CarePlanID: String {
-     case health // Add custom id's for your Care Plans, these are examples
-     case checkIn
+enum CarePlanID: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case health = "health"// Add custom id's for your Care Plans, these are examples
+    case checkIn = "check in"
+    case mindful = "mindful"
  }
 
 enum TaskID {
