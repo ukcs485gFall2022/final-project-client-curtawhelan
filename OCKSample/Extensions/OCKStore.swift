@@ -44,14 +44,35 @@ extension OCKStore {
     }
 
     func populateCarePlans(patientUUID: UUID? = nil) async throws {
-             let checkInCarePlan = OCKCarePlan(id: CarePlanID.checkIn.rawValue,
-                                               title: "Check in Care Plan",
-                                               patientUUID: patientUUID)
-             try await AppDelegateKey
-                 .defaultValue?
-                 .storeManager
-                 .addCarePlansIfNotPresent([checkInCarePlan],
-                                           patientUUID: patientUUID)
+        let checkInCarePlan = OCKCarePlan(id: CarePlanID.checkIn.rawValue,
+                                          title: "Check in Care Plan",
+                                          patientUUID: patientUUID)
+        try await AppDelegateKey
+            .defaultValue?
+            .storeManager
+            .addCarePlansIfNotPresent([checkInCarePlan],
+                                      patientUUID: patientUUID)
+    }
+
+    @MainActor
+    class func getCarePlanUUIDs() async throws -> [CarePlanID: UUID] {
+        var results = [CarePlanID: UUID]()
+
+        guard let store = AppDelegateKey.defaultValue?.store else {
+            return results
+        }
+
+        var query = OCKCarePlanQuery(for: Date())
+        query.ids = [CarePlanID.health.rawValue,
+                     CarePlanID.checkIn.rawValue]
+
+        let foundCarePlans = try await store.fetchCarePlans(query: query)
+        // Populate the dictionary for all CarePlan's
+        CarePlanID.allCases.forEach { carePlanID in
+            results[carePlanID] = foundCarePlans
+                .first(where: { $0.id == carePlanID.rawValue })?.uuid
+        }
+        return results
     }
 
     func addContactsIfNotPresent(_ contacts: [OCKContact]) async throws {
