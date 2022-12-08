@@ -22,7 +22,7 @@ class ProfileViewModel: ObservableObject {
     @Published var lastName = ""
     @Published var birthday = Date()
     @Published var sex: OCKBiologicalSex = .other("other")
-    @Published var sexOtherField = "other"
+    var sexOtherField = "other"
     @Published var note = ""
     @Published var allergy = ""
 
@@ -96,6 +96,16 @@ class ProfileViewModel: ObservableObject {
                 birthday = currentBirthday
             } else {
                 birthday = Date()
+            }
+            if let currentSex = newValue?.sex {
+                sex = currentSex
+            } else {
+                sex = OCKBiologicalSex.other(sexOtherField)
+            }
+            if let currentAllergy = newValue?.allergies?.first {
+                allergy = currentAllergy
+            } else {
+                allergy = ""
             }
         }
     }
@@ -316,6 +326,7 @@ extension ProfileViewModel {
     }
 
     @MainActor
+    // swiftlint:disable:next cyclomatic_complexity
     func savePatient() async throws {
 
         if var patientToUpdate = patient {
@@ -348,6 +359,11 @@ extension ProfileViewModel {
             if patient?.notes != notes {
                 patientHasBeenUpdated = true
                 patientToUpdate.notes = notes
+            }
+
+            if patient?.allergies?.first != allergy {
+                patientHasBeenUpdated = true
+                patientToUpdate.allergies = [allergy]
             }
 
             if patientHasBeenUpdated {

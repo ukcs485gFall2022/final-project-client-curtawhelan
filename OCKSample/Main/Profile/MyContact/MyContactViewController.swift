@@ -88,7 +88,14 @@ class MyContactViewController: OCKListViewController {
         query.sortDescriptors.append(.familyName(ascending: true))
         query.sortDescriptors.append(.givenName(ascending: true))
 
-        let filterdContacts = self.contacts.filter { convertedContact in
+        let allContacts = try await storeManager.store.fetchAnyContacts(query: query)
+
+        guard let convertedContacts = allContacts as? [OCKContact] else {
+            Logger.contact.error("Could not convert contacts")
+            return
+        }
+
+        let filterdContacts = convertedContacts.filter { convertedContact in
             Logger.contact.info("Contact filtered: \(convertedContact.id)")
             if convertedContact.id == personUUIDString {
                 return true
@@ -97,12 +104,12 @@ class MyContactViewController: OCKListViewController {
             }
         }
 
-        self.contacts = try await storeManager.store.fetchAnyContacts(query: query)
-        self.displayContacts()
+        self.contacts = filterdContacts
+        self.displayContacts(self.contacts)
     }
 
     @MainActor
-    func displayContacts() {
+    func displayContacts(_ myContact: [OCKAnyContact]) {
         self.clear()
         for contact in self.contacts {
             let contactViewController = OCKDetailedContactViewController(contact: contact,
