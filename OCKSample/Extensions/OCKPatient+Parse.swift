@@ -51,6 +51,10 @@ extension OCKPatient {
         }
     }
 
+    /**
+     The single string allergy of the patient
+     */
+
     /// Initialize a patient with an id, a first name, and a last name.
     ///
     /// - Parameters:

@@ -362,10 +362,9 @@
 			children = (
 				7036E4C8256E1A6F006E9A3C /* ProfileView.swift */,
 				7036E516256F2413006E9A3C /* ProfileViewModel.swift */,
-				DA430DF1290B1C5F00215809 /* TaskView.swift */,
-				DA430DF3290B1C9300215809 /* TaskViewModel.swift */,
 				DAEFD0F72936565E00E0DF20 /* ImagePicker.swift */,
 				DAEFD0FE2936683400E0DF20 /* ProfileImageView.swift */,
+				DA6BFB68293E3FE8000A6430 /* Task */,
 				DAEFD0F92936595A00E0DF20 /* MyContact */,
 			);
 			path = Profile;
@@ -537,6 +536,15 @@
 				91AD924524A4C42E00925D4D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DA6BFB68293E3FE8000A6430 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				DA430DF1290B1C5F00215809 /* TaskView.swift */,
+				DA430DF3290B1C9300215809 /* TaskViewModel.swift */,
+			);
+			path = Task;
 			sourceTree = "<group>";
 		};
 		DAEFD0F92936595A00E0DF20 /* MyContact */ = {

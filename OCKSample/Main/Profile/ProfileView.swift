@@ -37,17 +37,17 @@ struct ProfileView: View {
                                 Text(viewModel.sex.rawValue)
                                     .tag(OCKBiologicalSex.other(viewModel.sexOtherField))
                             }
-                            TextField("Allergies", text: $viewModel.allergies)
+                            TextField("Allergies", text: $viewModel.allergy)
                         }
                         Section(header: Text("Contact")) {
                             TextField("Street", text: $viewModel.street)
                             TextField("City", text: $viewModel.city)
                             TextField("State", text: $viewModel.state)
                             TextField("Postal Code", text: $viewModel.zipCode)
-                            TextField("E-mail", text: $viewModel.email)
-                            TextField("Messaging Number", text: $viewModel.messagingNumbers)
-                            TextField("Phone Number", text: $viewModel.messagingNumbers)
-                            TextField("Other Contact Info", text: $viewModel.messagingNumbers)
+                            TextField("E-mail", text: $viewModel.emailValue)
+                            TextField("Messaging Number", text: $viewModel.messagingValue)
+                            TextField("Phone Number", text: $viewModel.phoneNumbersValue)
+                            TextField("Other Contact Info", text: $viewModel.otherContactInfoValue)
                         }
                     }
                 }
@@ -93,7 +93,6 @@ struct ProfileView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        print("Add task tapped!")
                         viewModel.isPresentingAddTask = true
                     }, label: {
                         Text("Add Task")

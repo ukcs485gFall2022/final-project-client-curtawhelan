@@ -17,21 +17,33 @@ import ParseSwift
 
 class ProfileViewModel: ObservableObject {
     // MARK: Public read, private write properties
+    // Publishers for Patient
     @Published var firstName = ""
     @Published var lastName = ""
     @Published var birthday = Date()
     @Published var sex: OCKBiologicalSex = .other("other")
-    @Published var sexOtherField = "other"
+    var sexOtherField = "other"
     @Published var note = ""
+    @Published var allergy = ""
+
+    // Publishers for Contact
     @Published var street = ""
     @Published var city = ""
     @Published var state = ""
     @Published var zipCode = ""
-    @Published var allergies = ""
-    @Published var email = ""
-    @Published var messagingNumbers = ""
-    @Published var phoneNumbers = ""
-    @Published var otherContactInfo = ""
+
+    var emailLabel = "Email 1" // publish if want to update in the view
+    @Published var emailValue = ""
+
+    var messagingLabel = "Messaging Number 1"
+    @Published var messagingValue = ""
+
+    var phoneNumbersLabel = "Phone Number 1"
+    @Published var phoneNumbersValue = ""
+
+    var otherContactInfoLabel = "Other Contact Info 1"
+    @Published var otherContactInfoValue = ""
+
     @Published var isShowingSaveAlert = false
     @Published var isPresentingAddTask = false
     @Published var isPresentingContact = false
@@ -85,10 +97,62 @@ class ProfileViewModel: ObservableObject {
             } else {
                 birthday = Date()
             }
+            if let currentSex = newValue?.sex {
+                sex = currentSex
+            } else {
+                sex = OCKBiologicalSex.other(sexOtherField)
+            }
+            if let currentAllergy = newValue?.allergies?.first {
+                allergy = currentAllergy
+            } else {
+                allergy = ""
+            }
         }
     }
 
-    private var contact: OCKContact?
+    private var contact: OCKContact? {
+        willSet {
+            if let currentEmail = newValue?.emailAddresses?.first {
+                emailLabel = currentEmail.label
+                emailValue = currentEmail.value
+            } else {
+                emailLabel = ""
+                emailValue = ""
+            }
+            if let address = newValue?.address {
+                street = address.street
+                city = address.city
+                state = address.state
+                zipCode = address.postalCode
+            } else {
+                street = ""
+                city = ""
+                state = ""
+                zipCode = ""
+            }
+            if let currentMessagingNumber = newValue?.messagingNumbers?.first {
+                messagingLabel = currentMessagingNumber.label
+                messagingValue = currentMessagingNumber.value
+            } else {
+                messagingLabel = ""
+                messagingValue = ""
+            }
+            if let currentPhoneNumber = newValue?.phoneNumbers?.first {
+                phoneNumbersLabel = currentPhoneNumber.label
+                phoneNumbersValue = currentPhoneNumber.value
+            } else {
+                phoneNumbersLabel = ""
+                phoneNumbersValue = ""
+            }
+            if let currentOtherContactInfo = newValue?.otherContactInfo?.first {
+                otherContactInfoLabel = currentOtherContactInfo.label
+                otherContactInfoValue = currentOtherContactInfo.value
+            } else {
+                otherContactInfoLabel = ""
+                otherContactInfoValue = ""
+            }
+        }
+    }
     private var isSettingProfilePictureForFirstTime = true
     private var cancellables: Set<AnyCancellable> = []
 
@@ -149,7 +213,7 @@ class ProfileViewModel: ObservableObject {
                 Logger.profile.error("Error: Could not find contact with id \"\(uuid)\". It's possible they have never been saved.")
                 return
             }
-            self.observePatient(currentPatient)
+            self.observeContact(currentContact)
 
         } catch {
             // swiftlint:disable:next line_length
@@ -262,6 +326,7 @@ extension ProfileViewModel {
     }
 
     @MainActor
+    // swiftlint:disable:next cyclomatic_complexity
     func savePatient() async throws {
 
         if var patientToUpdate = patient {
@@ -296,6 +361,11 @@ extension ProfileViewModel {
                 patientToUpdate.notes = notes
             }
 
+            if patient?.allergies?.first != allergy {
+                patientHasBeenUpdated = true
+                patientToUpdate.allergies = [allergy]
+            }
+
             if patientHasBeenUpdated {
                 let updated = try await storeManager.store.updateAnyPatient(patientToUpdate)
                 Logger.profile.info("Successfully updated patient!")
@@ -328,6 +398,7 @@ extension ProfileViewModel {
     }
 
     @MainActor
+    // swiftlint:disable:next cyclomatic_complexity
     func saveContact() async throws {
 
         if var contactToUpdate = contact {
@@ -352,6 +423,54 @@ extension ProfileViewModel {
             if contact?.address != potentialAddress {
                 contactHasBeenUpdated = true
                 contactToUpdate.address = potentialAddress
+            }
+
+            let potentialEmail = OCKLabeledValue(label: emailLabel, value: emailValue)
+            if var emailAddresses = contact?.emailAddresses {
+                if emailAddresses.first != potentialEmail {
+                    contactHasBeenUpdated = true
+                    emailAddresses[0] = potentialEmail
+                    contactToUpdate.emailAddresses = emailAddresses
+                }
+            } else {
+                contactHasBeenUpdated = true
+                contactToUpdate.emailAddresses = [potentialEmail]
+            }
+
+            let potentialMessagingNumber = OCKLabeledValue(label: messagingLabel, value: messagingValue)
+            if var messagingNumbers = contact?.messagingNumbers {
+                if messagingNumbers.first != potentialMessagingNumber {
+                    contactHasBeenUpdated = true
+                    messagingNumbers[0] = potentialMessagingNumber
+                    contactToUpdate.messagingNumbers = messagingNumbers
+                }
+            } else {
+                contactHasBeenUpdated = true
+                contactToUpdate.messagingNumbers = [potentialMessagingNumber]
+            }
+
+            let potentialPhoneNumber = OCKLabeledValue(label: phoneNumbersLabel, value: phoneNumbersValue)
+            if var phoneNumbers = contact?.phoneNumbers {
+                if phoneNumbers.first != potentialPhoneNumber {
+                    contactHasBeenUpdated = true
+                    phoneNumbers[0] = potentialPhoneNumber
+                    contactToUpdate.phoneNumbers = phoneNumbers
+                }
+            } else {
+                contactHasBeenUpdated = true
+                contactToUpdate.phoneNumbers = [potentialPhoneNumber]
+            }
+
+            let potentialOtherContactInfo = OCKLabeledValue(label: otherContactInfoLabel, value: otherContactInfoValue)
+            if var otherContactInfo = contact?.otherContactInfo {
+                if otherContactInfo.first != potentialOtherContactInfo {
+                    contactHasBeenUpdated = true
+                    otherContactInfo[0] = potentialOtherContactInfo
+                    contactToUpdate.otherContactInfo = otherContactInfo
+                }
+            } else {
+                contactHasBeenUpdated = true
+                contactToUpdate.otherContactInfo = [potentialOtherContactInfo]
             }
 
             if contactHasBeenUpdated {
