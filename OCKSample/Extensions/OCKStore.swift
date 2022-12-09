@@ -158,6 +158,7 @@ extension OCKStore {
         stretch.card = .instruction
 
         try await addTasksIfNotPresent([nausea, doxylamine, kegels, stretch])
+        try await addOnboardTask()
 
         var contact1 = OCKContact(id: "jane", givenName: "Jane",
                                   familyName: "Daniels", carePlanUUID: nil)
@@ -194,5 +195,27 @@ extension OCKStore {
         }()
 
         try await addContactsIfNotPresent([contact1, contact2])
+    }
+
+    func addOnboardTask(_ carePlanUUID: UUID? = nil) async throws {
+        let onboardSchedule = OCKSchedule.dailyAtTime(
+            hour: 0, minutes: 0,
+            start: Date(), end: nil,
+            text: "Task Due!",
+            duration: .allDay
+        )
+
+        var onboardTask = OCKTask(
+            id: Onboard.identifier(),
+            title: "Onboard",
+            carePlanUUID: carePlanUUID,
+            schedule: onboardSchedule
+        )
+        onboardTask.instructions = "You'll need to agree to some terms and conditions before we get started!"
+        onboardTask.impactsAdherence = false
+        onboardTask.card = .survey
+        onboardTask.survey = .onboard
+
+        try await addTasksIfNotPresent([onboardTask])
     }
 }
