@@ -383,7 +383,7 @@
 			children = (
 				70221F2728D7809800971195 /* MainTabView.swift */,
 				7036E4D2256EBE35006E9A3C /* MainView.swift */,
-				DAA199952943B31800E7B6CE /* xSurveys */,
+				DAA199952943B31800E7B6CE /* Surveys */,
 				70308878258272CD00FFABB6 /* Care */,
 				7030887D258272F400FFABB6 /* Contact */,
 				DAA199A52943B42D00E7B6CE /* Onboarding */,
@@ -604,7 +604,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DAA199952943B31800E7B6CE /* xSurveys */ = {
+		DAA199952943B31800E7B6CE /* Surveys */ = {
 			isa = PBXGroup;
 			children = (
 				DAA199972943B33200E7B6CE /* CheckIn.swift */,
@@ -613,7 +613,7 @@
 				DAA1999A2943B33300E7B6CE /* Survey.swift */,
 				DAA199962943B33200E7B6CE /* Surveyable.swift */,
 			);
-			path = xSurveys;
+			path = Surveys;
 			sourceTree = "<group>";
 		};
 		DAA199A52943B42D00E7B6CE /* Onboarding */ = {

@@ -89,14 +89,14 @@ extension CheckIn {
                 .compactMap({ $0 as? ORKStepResult })
                 .first(where: { $0.identifier == Self.formIdentifier }),
 
-            let scaleResults = response
+                let scaleResults = response
                 .results?.compactMap({ $0 as? ORKScaleQuestionResult }),
 
-            let painAnswer = scaleResults
+                let painAnswer = scaleResults
                 .first(where: { $0.identifier == Self.painItemIdentifier })?
                 .scaleAnswer,
 
-            let sleepAnswer = scaleResults
+                let sleepAnswer = scaleResults
                 .first(where: { $0.identifier == Self.sleepItemIdentifier })?
                 .scaleAnswer
         else {

@@ -83,7 +83,6 @@ class LoginViewModel: ObservableObject {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             NotificationCenter.default.post(.init(name: Notification.Name(rawValue: Constants.requestSync)))
-            Utility.requestHealthKitPermissions()
         }
 
         // Setup installation to receive push notifications
