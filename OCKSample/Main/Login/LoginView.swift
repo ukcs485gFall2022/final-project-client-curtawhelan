@@ -57,30 +57,41 @@ struct LoginView: View {
                 Text("Sign Up").tag(1)
             }
             .pickerStyle(.segmented)
-            .background(Color(tintColorFlip))
-            .cornerRadius(20.0)
+            .background(Color(tintColor))
+            .cornerRadius(5.0)
             .padding()
 
             VStack(alignment: .leading) {
-                TextField("Email", text: $email)
-                    .padding()
-                    .background(.white)
-                    .cornerRadius(20.0)
-                    .shadow(radius: 10.0, x: 20, y: 10)
-                TextField("Username", text: $usersname)
-                    .padding()
-                    .background(.white)
-                    .cornerRadius(20.0)
-                    .shadow(radius: 10.0, x: 20, y: 10)
-                SecureField("Password", text: $password)
-                    .padding()
-                    .background(.white)
-                    .cornerRadius(20.0)
-                    .shadow(radius: 10.0, x: 20, y: 10)
-
                 switch signupLoginSegmentValue {
+                case 0:
+                    TextField("Email", text: $email)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
+                    TextField("Username", text: $usersname)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
+
                 case 1:
                     TextField("Email", text: $email)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
+                    TextField("Username", text: $usersname)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
+                    SecureField("Password", text: $password)
                         .padding()
                         .background(.white)
                         .cornerRadius(20.0)
@@ -139,7 +150,7 @@ struct LoginView: View {
                         .frame(width: 300)
                 }
             })
-            .background(Color(.green))
+            .background(Color(tintColorFlip))
             .cornerRadius(15)
 
             Button(action: {
@@ -149,7 +160,7 @@ struct LoginView: View {
             }, label: {
                 switch signupLoginSegmentValue {
                 case 0:
-                    Text("Login Anonymously")
+                    Text("Guest Login")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()

@@ -370,15 +370,14 @@ class CareViewController: OCKDailyPageViewController {
 }
 
 extension CareViewController: OCKSurveyTaskViewControllerDelegate {
-    func surveyTask(
-        viewController: OCKSurveyTaskViewController,
-        for task: OCKAnyTask,
-        didFinish result: Result<ORKTaskViewControllerFinishReason, Error>) {
+    func surveyTask(viewController: OCKSurveyTaskViewController,
+                    for task: OCKAnyTask,
+                    didFinish result: Result<ORKTaskViewControllerFinishReason, Error>) {
 
-            if case let .success(reason) = result, reason == .completed {
-                reload()
-            }
+        if case let .success(reason) = result, reason == .completed {
+            reload()
         }
+    }
 }
 
 private extension View {

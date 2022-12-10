@@ -160,7 +160,7 @@ class LoginViewModel: ObservableObject {
             // Set any properties you want saved on the user befor logging in.
             newUser.username = username.lowercased()
             newUser.password = password
-            newUser.email = email
+            newUser.email = email?.lowercased()
             let user = try await newUser.signup()
             Logger.login.info("Parse signup successful: \(user)")
             let patient = try await savePatientAfterSignUp(type,
