@@ -34,8 +34,12 @@ extension Onboard {
         )
 
         welcomeInstructionStep.title = "Welcome!"
-        welcomeInstructionStep.detailText = "Thank you for joining our study. Tap Next to learn more before signing up."
-        welcomeInstructionStep.image = UIImage(named: "welcome-image")
+        welcomeInstructionStep.detailText =
+        """
+        Thank you for downloading Trek Track! \n
+        Tap Next to get started on your Trek to better mental health.
+        """
+        welcomeInstructionStep.image = UIImage(systemName: "heart.fill")
         welcomeInstructionStep.imageContentMode = .scaleAspectFill
 
         // The Informed Consent Instruction step.
@@ -43,37 +47,37 @@ extension Onboard {
             identifier: "\(identifier()).overview"
         )
 
-        studyOverviewInstructionStep.title = "Before You Join"
-        studyOverviewInstructionStep.iconImage = UIImage(systemName: "checkmark.seal.fill")
+        studyOverviewInstructionStep.title = "A Few Things First..."
+        studyOverviewInstructionStep.iconImage = UIImage(systemName: "hand.app.fill")
 
         let heartBodyItem = ORKBodyItem(
-            text: "The study will ask you to share some of your health data.",
-            detailText: nil,
-            image: UIImage(systemName: "heart.fill"),
+            text: "We will ask you to share some of your health data",
+            detailText: "Data will be used to track your stats",
+            image: UIImage(systemName: "brain.head.profile"),
             learnMoreItem: nil,
             bodyItemStyle: .image
         )
 
         let completeTasksBodyItem = ORKBodyItem(
-            text: "You will be asked to complete various tasks over the duration of the study.",
-            detailText: nil,
-            image: UIImage(systemName: "checkmark.circle.fill"),
+            text: "We only use this data in ways that will help you reach your goals",
+            detailText: "It will never be sold to advertisers",
+            image: UIImage(systemName: "figure.mind.and.body"),
             learnMoreItem: nil,
             bodyItemStyle: .image
         )
 
         let signatureBodyItem = ORKBodyItem(
-            text: "Before joining, we will ask you to sign an informed consent document.",
-            detailText: nil,
-            image: UIImage(systemName: "signature"),
+            text: "We will require a signature to confirm your consent",
+            detailText: "No apple pen required",
+            image: UIImage(systemName: "square.and.pencil.circle.fill"),
             learnMoreItem: nil,
             bodyItemStyle: .image
         )
 
         let secureDataBodyItem = ORKBodyItem(
-            text: "Your data is kept private and secure.",
-            detailText: nil,
-            image: UIImage(systemName: "lock.fill"),
+            text: "Your data is kept private and secure",
+            detailText: "Always always always",
+            image: UIImage(systemName: "lock.iphone"),
             learnMoreItem: nil,
             bodyItemStyle: .image
         )
@@ -105,7 +109,7 @@ extension Onboard {
         let healthKitTypesToRead: Set<HKObjectType> = [
             .characteristicType(forIdentifier: .dateOfBirth)!,
             .workoutType(),
-            .quantityType(forIdentifier: .appleStandTime)!,
+            .quantityType(forIdentifier: .dietaryWater)!,
             .quantityType(forIdentifier: .appleExerciseTime)!
         ]
 
@@ -131,7 +135,7 @@ extension Onboard {
 
         requestPermissionsStep.title = "Health Data Request"
         // swiftlint:disable:next line_length
-        requestPermissionsStep.text = "Please review the health data types below and enable sharing to contribute to the study."
+        requestPermissionsStep.text = "Please review the health data types below and enable sharing to enhance your experience."
 
         // Completion Step
         let completionStep = ORKCompletionStep(
@@ -139,8 +143,8 @@ extension Onboard {
         )
 
         completionStep.title = "Enrollment Complete"
-        // swiftlint:disable:next line_length
-        completionStep.text = "Thank you for enrolling in this study. Your participation will contribute to meaningful research!"
+
+        completionStep.text = "Thank you for completing the onboarding survey. \nYour Trek has only just begun!"
 
         let surveyTask = ORKOrderedTask(
             identifier: identifier(),
