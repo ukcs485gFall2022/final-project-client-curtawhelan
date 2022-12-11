@@ -73,7 +73,7 @@ class MyContactViewController: OCKListViewController {
         }
 
         /*
-          TODOx: How would you modify this query to only fetch the contact that belongs to this device?
+          How would you modify this query to only fetch the contact that belongs to this device?
           
           Hint 1: There are multiple ways to do this. You can modify the query
           below which can work.
@@ -114,6 +114,9 @@ class MyContactViewController: OCKListViewController {
         for contact in self.contacts {
             let contactViewController = OCKDetailedContactViewController(contact: contact,
                                                                          storeManager: storeManager)
+            if let carekitView = contactViewController.view as? OCKView {
+                carekitView.customStyle = CustomStylerKey.defaultValue
+            }
             contactViewController.delegate = self.contactDelegate
             self.appendViewController(contactViewController, animated: false)
         }

@@ -158,6 +158,7 @@ extension OCKStore {
         stretch.card = .instruction
 
         try await addTasksIfNotPresent([nausea, doxylamine, kegels, stretch])
+        try await addOnboardTask()
 
         var contact1 = OCKContact(id: "jane", givenName: "Jane",
                                   familyName: "Daniels", carePlanUUID: nil)
@@ -194,5 +195,91 @@ extension OCKStore {
         }()
 
         try await addContactsIfNotPresent([contact1, contact2])
+    }
+
+    func addOnboardTask(_ carePlanUUID: UUID? = nil) async throws {
+        let onboardSchedule = OCKSchedule.dailyAtTime(
+            hour: 0, minutes: 0,
+            start: Date(), end: nil,
+            text: "Task Due!",
+            duration: .allDay
+        )
+
+        var onboardTask = OCKTask(
+            id: Onboard.identifier(),
+            title: "Onboard",
+            carePlanUUID: carePlanUUID,
+            schedule: onboardSchedule
+        )
+        onboardTask.instructions = "You'll need to agree to some terms and conditions before we get started!"
+        onboardTask.impactsAdherence = false
+        onboardTask.card = .survey
+        onboardTask.survey = .onboard
+
+        try await addTasksIfNotPresent([onboardTask])
+    }
+
+    func addSurveyTasks(_ carePlanUUID: UUID? = nil) async throws {
+        let checkInSchedule = OCKSchedule.dailyAtTime(
+            hour: 8, minutes: 0,
+            start: Date(), end: nil,
+            text: nil
+        )
+
+        var checkInTask = OCKTask(
+            id: CheckIn.identifier(),
+            title: "Check In",
+            carePlanUUID: carePlanUUID,
+            schedule: checkInSchedule
+        )
+        checkInTask.card = .survey
+        checkInTask.survey = .checkIn
+
+        let thisMorning = Calendar.current.startOfDay(for: Date())
+
+        let nextWeek = Calendar.current.date(
+            byAdding: .weekOfYear,
+            value: 1,
+            to: Date()
+        )!
+
+        let nextMonth = Calendar.current.date(
+            byAdding: .month,
+            value: 1,
+            to: thisMorning
+        )
+
+        let dailyElement = OCKScheduleElement(
+            start: thisMorning,
+            end: nextWeek,
+            interval: DateComponents(day: 1),
+            text: nil,
+            targetValues: [],
+            duration: .allDay
+        )
+
+        let weeklyElement = OCKScheduleElement(
+            start: nextWeek,
+            end: nextMonth,
+            interval: DateComponents(weekOfYear: 1),
+            text: nil,
+            targetValues: [],
+            duration: .allDay
+        )
+
+        let rangeOfMotionCheckSchedule = OCKSchedule(
+            composing: [dailyElement, weeklyElement]
+        )
+
+        var rangeOfMotionTask = OCKTask(
+            id: RangeOfMotion.identifier(),
+            title: "Range Of Motion",
+            carePlanUUID: carePlanUUID,
+            schedule: rangeOfMotionCheckSchedule
+        )
+        rangeOfMotionTask.card = .survey
+        rangeOfMotionTask.survey = .rangeOfMotion
+
+        try await addTasksIfNotPresent([checkInTask, rangeOfMotionTask])
     }
 }

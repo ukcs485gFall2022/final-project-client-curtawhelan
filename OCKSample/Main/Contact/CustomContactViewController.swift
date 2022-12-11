@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CareKitStore
 import CareKit
+import CareKitUI
 import Contacts
 import ContactsUI
 import ParseSwift
@@ -67,6 +68,7 @@ class CustomContactViewController: OCKListViewController {
      @objc private func presentContactsListViewController() {
 
          let contactPicker = CNContactPickerViewController()
+         contactPicker.view.tintColor = self.view.tintColor
          contactPicker.delegate = self
          contactPicker.predicateForEnablingContact = NSPredicate(
            format: "phoneNumbers.@count > 0")
@@ -100,7 +102,7 @@ class CustomContactViewController: OCKListViewController {
              return
          }
 
-         // TODOx: Modify this filter to not show the contact info for this user
+         // Modify this filter to not show the contact info for this user
          let filterdContacts = convertedContacts.filter { convertedContact in
              Logger.contact.info("Contact filtered: \(convertedContact.id)")
              if convertedContact.id == personUUIDString {
@@ -120,6 +122,10 @@ class CustomContactViewController: OCKListViewController {
          for contact in contacts {
              let contactViewController = OCKSimpleContactViewController(contact: contact,
                                                                         storeManager: storeManager)
+             if let carekitView = contactViewController.view as? OCKView {
+                 carekitView.customStyle = CustomStylerKey.defaultValue
+             }
+
              contactViewController.delegate = self.contactDelegate
              self.appendViewController(contactViewController, animated: false)
          }

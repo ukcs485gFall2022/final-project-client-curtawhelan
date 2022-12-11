@@ -18,6 +18,7 @@ struct MyContactView: UIViewControllerRepresentable {
 
     func makeUIViewController(context: Context) -> some UIViewController {
         let viewController = MyContactViewController(storeManager: storeManager)
+        viewController.view.tintColor = TintColorKey.defaultValue
         return UINavigationController(rootViewController: viewController)
     }
 

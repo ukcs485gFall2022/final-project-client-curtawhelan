@@ -46,10 +46,6 @@ extension AppDelegate: UIApplicationDelegate {
                 do {
                     try await store?.populateSampleData()
                     try await healthKitStore.populateSampleData()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        NotificationCenter.default.post(.init(name: Notification.Name(rawValue: Constants.requestSync)))
-                        Utility.requestHealthKitPermissions()
-                    }
                 } catch {
                     Logger.appDelegate.error("""
                         Error in SceneDelage, could not populate
