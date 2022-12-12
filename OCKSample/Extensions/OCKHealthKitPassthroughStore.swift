@@ -43,7 +43,7 @@ extension OCKHealthKitPassthroughStore {
     }
 
     /*
-        TODOx: You need to tie an OCPatient and CarePlan to these tasks,
+        xTODO: You need to tie an OCPatient and CarePlan to these tasks,
     */
 
     func populateSampleData(_ patientUUID: UUID? = nil) async throws {
@@ -99,6 +99,6 @@ extension OCKHealthKitPassthroughStore {
         vitaminD.asset = "sun.max.fill"
         vitaminD.card = .numericProgress
 
-        try await addTasksIfNotPresent([drinkingWater, vitaminD])
+        try await addTasksIfNotPresent([steps, drinkingWater, vitaminD])
     }
 }

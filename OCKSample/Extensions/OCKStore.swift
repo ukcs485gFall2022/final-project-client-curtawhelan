@@ -110,8 +110,9 @@ extension OCKStore {
 
         let thisMorning = Calendar.current.startOfDay(for: Date())
         guard let aFewDaysAgo = Calendar.current.date(byAdding: .day, value: -4, to: thisMorning),
-              let beforeBreakfast = Calendar.current.date(byAdding: .hour, value: 8, to: aFewDaysAgo),
-              let afterLunch = Calendar.current.date(byAdding: .hour, value: 14, to: aFewDaysAgo),
+              let beforeBreakfast = Calendar.current.date(byAdding: .hour, value: 7, to: aFewDaysAgo),
+              let afterBreakfast = Calendar.current.date(byAdding: .hour, value: 8, to: aFewDaysAgo),
+              let afterLunch = Calendar.current.date(byAdding: .hour, value: 12, to: aFewDaysAgo),
               let afterDinner = Calendar.current.date(byAdding: .hour, value: 18, to: aFewDaysAgo),
               let beforeBed = Calendar.current.date(byAdding: .hour, value: 22, to: aFewDaysAgo)
 
@@ -120,17 +121,8 @@ extension OCKStore {
             return
         }
 
-        let brushTeethSchedule = OCKSchedule(composing: [
-            OCKScheduleElement(start: beforeBreakfast, end: nil,
-                               interval: DateComponents(day: 1)),
-
-            OCKScheduleElement(start: beforeBed, end: nil,
-                               interval: DateComponents(day: 1))
-
-        ])
-
         let mealSchedule = OCKSchedule(composing: [
-            OCKScheduleElement(start: beforeBreakfast, end: nil,
+            OCKScheduleElement(start: afterBreakfast, end: nil,
                                interval: DateComponents(day: 1)),
 
             OCKScheduleElement(start: afterLunch, end: nil,
@@ -145,6 +137,7 @@ extension OCKStore {
         var stretch = OCKTask(id: "stretch", title: "Stretch", carePlanUUID: nil, schedule: stretchSchedule)
         stretch.impactsAdherence = true
         stretch.asset = "figure.walk"
+        stretch.instructions = "A little mornin' stretch to get the blood flowin'"
         stretch.card = .instruction
 
         // My new tasks
@@ -171,16 +164,20 @@ extension OCKStore {
         threeMeals.asset = "fork.knife"
         threeMeals.card = .checklist
 
+        let bathingElement = OCKScheduleElement(start: beforeBed,
+                                                end: nil,
+                                                interval: DateComponents(day: 1))
+        let bathingSchedule = OCKSchedule(composing: [bathingElement])
         var bathe = OCKTask(id: TaskID.bathe,
                                  title: "Bathe",
                                  carePlanUUID: nil,
-                                 schedule: brushTeethSchedule)
+                                 schedule: bathingSchedule)
         bathe.impactsAdherence = true
         bathe.instructions = "Shower or take a bath every day"
         bathe.asset = "bathtub.fill"
         bathe.card = .grid
 
-        try await addTasksIfNotPresent([stretch, takeABreak, threeMeals, bathe])
+        try await addTasksIfNotPresent([bathe, takeABreak, threeMeals, stretch])
         try await addOnboardTask()
 
         var contact1 = OCKContact(id: "jane", givenName: "Jane",
