@@ -117,16 +117,15 @@ struct Surveys {
 
         requestPermissionsStep.title = "Health Data Request"
         // swiftlint:disable:next line_length
-        requestPermissionsStep.text = "Please review the health data types below and enable sharing to contribute to the study."
+        requestPermissionsStep.text = "Please review the health data types below and enable sharing to enhance your experience on Trek Track."
 
         // Completion Step
         let completionStep = ORKCompletionStep(
             identifier: "onboarding.completionStep"
         )
 
-        completionStep.title = "Enrollment Complete"
-        // swiftlint:disable:next line_length
-        completionStep.text = "Thank you for enrolling in this study. Your participation will contribute to meaningful research!"
+        completionStep.title = "Set Up Complete"
+        completionStep.text = "Thank you for finishing the set up. I hope that Trek Track helps you as much as I hope."
 
         let surveyTask = ORKOrderedTask(
             identifier: "onboard",

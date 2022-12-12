@@ -215,7 +215,7 @@ class CareViewController: OCKDailyPageViewController {
                 task: task,
                 eventQuery: OCKEventQuery(for: date),
                 storeManager: self.storeManager)
-                .padding([.vertical], 20)
+                .padding([.vertical], 30)
                 .careKitStyle(CustomStylerKey.defaultValue)
 
             return [view.formattedHostingController()]
@@ -223,6 +223,11 @@ class CareViewController: OCKDailyPageViewController {
             return [OCKInstructionsTaskViewController(task: task,
                                                      eventQuery: .init(for: date),
                                                      storeManager: self.storeManager)]
+
+        case .grid:
+            return [OCKGridTaskViewController(task: task,
+                                              eventQuery: .init(for: date),
+                                              storeManager: self.storeManager)]
 
         case .simple:
             /*
@@ -244,39 +249,31 @@ class CareViewController: OCKDailyPageViewController {
         case .button:
             var cards = [UIViewController]()
             // dynamic gradient colors
-            let nauseaGradientStart = UIColor { traitCollection -> UIColor in
+            let breakGradientStart = UIColor { traitCollection -> UIColor in
                 return traitCollection.userInterfaceStyle == .light ? #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1) : #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             }
-            let nauseaGradientEnd = UIColor { traitCollection -> UIColor in
+            let breakGradientEnd = UIColor { traitCollection -> UIColor in
                 return traitCollection.userInterfaceStyle == .light ? #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1) : #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
             }
-
+            // xTODO: change this from being hard coded
             // Create a plot comparing nausea to medication adherence.
-            let nauseaDataSeries = OCKDataSeriesConfiguration(
-                taskID: TaskID.nausea,
-                legendTitle: "Nausea",
-                gradientStartColor: nauseaGradientStart,
-                gradientEndColor: nauseaGradientEnd,
-                markerSize: 10,
-                eventAggregator: OCKEventAggregator.countOutcomeValues)
-
-            let doxylamineDataSeries = OCKDataSeriesConfiguration(
-                taskID: TaskID.doxylamine,
-                legendTitle: "Doxylamine",
-                gradientStartColor: .systemGray2,
-                gradientEndColor: .systemGray,
-                markerSize: 10,
+            let breakDataSeries = OCKDataSeriesConfiguration(
+                taskID: TaskID.takeABreak,
+                legendTitle: "Breaks",
+                gradientStartColor: breakGradientStart,
+                gradientEndColor: breakGradientEnd,
+                markerSize: 5,
                 eventAggregator: OCKEventAggregator.countOutcomeValues)
 
             let insightsCard = OCKCartesianChartViewController(
-                plotType: .bar,
+                plotType: .line,
                 selectedDate: date,
-                configurations: [nauseaDataSeries, doxylamineDataSeries],
+                configurations: [breakDataSeries],
                 storeManager: self.storeManager)
 
-            insightsCard.chartView.headerView.titleLabel.text = "Nausea & Doxylamine Intake"
-            insightsCard.chartView.headerView.detailLabel.text = "This Week"
-            insightsCard.chartView.headerView.accessibilityLabel = "Nausea & Doxylamine Intake, This Week"
+            insightsCard.chartView.headerView.titleLabel.text = "Breaks Taken"
+            insightsCard.chartView.headerView.detailLabel.text = "For the current week"
+            insightsCard.chartView.headerView.accessibilityLabel = "Number of Breaks Taken, For the current week"
             cards.append(insightsCard)
 
             /*
@@ -284,10 +281,10 @@ class CareViewController: OCKDailyPageViewController {
              The event query passed into the initializer specifies that only
              today's log entries should be displayed by this log task view controller.
              */
-            let nauseaCard = OCKButtonLogTaskViewController(task: task,
+            let breakCard = OCKButtonLogTaskViewController(task: task,
                                                             eventQuery: .init(for: date),
                                                             storeManager: self.storeManager)
-            cards.append(nauseaCard)
+            cards.append(breakCard)
             return cards
         case .labeledValue:
             let view = LabeledValueTaskView(
@@ -298,11 +295,10 @@ class CareViewController: OCKDailyPageViewController {
                 .careKitStyle(CustomStylerKey.defaultValue)
 
             return [view.formattedHostingController()]
-        case .link:
-            let linkView = LinkView(title: .init("Recipe Ideas"),
-                                    // swiftlint:disable:next line_length
-                                    links: [.website("https://www.budgetbytes.com/top-20-recipes-eating-healthy-budget/",
-                                                     title: "Healthy Recipes From BudgetBytes")])
+        case .link: // xTODO: change this from being hard coded
+            let linkView = LinkView(title: .init("Get Up!"),
+                                    links: [.website("https://www.youtube.com/watch?v=enYdAxVcNZA",
+                                                     title: "Your New Morning Alarm by Mark Rebillet")])
             return [linkView.formattedHostingController()]
 
         case .survey:
