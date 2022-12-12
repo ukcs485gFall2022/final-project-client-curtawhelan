@@ -215,7 +215,7 @@ class CareViewController: OCKDailyPageViewController {
                 task: task,
                 eventQuery: OCKEventQuery(for: date),
                 storeManager: self.storeManager)
-                .padding([.vertical], 20)
+                .padding([.vertical], 30)
                 .careKitStyle(CustomStylerKey.defaultValue)
 
             return [view.formattedHostingController()]
@@ -250,7 +250,7 @@ class CareViewController: OCKDailyPageViewController {
             let breakGradientEnd = UIColor { traitCollection -> UIColor in
                 return traitCollection.userInterfaceStyle == .light ? #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1) : #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
             }
-
+            // xTODO: change this from being hard coded
             // Create a plot comparing nausea to medication adherence.
             let breakDataSeries = OCKDataSeriesConfiguration(
                 taskID: TaskID.takeABreak,
@@ -261,7 +261,7 @@ class CareViewController: OCKDailyPageViewController {
                 eventAggregator: OCKEventAggregator.countOutcomeValues)
 
             let insightsCard = OCKCartesianChartViewController(
-                plotType: .bar,
+                plotType: .line,
                 selectedDate: date,
                 configurations: [breakDataSeries],
                 storeManager: self.storeManager)
@@ -290,7 +290,7 @@ class CareViewController: OCKDailyPageViewController {
                 .careKitStyle(CustomStylerKey.defaultValue)
 
             return [view.formattedHostingController()]
-        case .link:
+        case .link: // xTODO: change this from being hard coded
             let linkView = LinkView(title: .init("Recipe Ideas"),
                                     // swiftlint:disable:next line_length
                                     links: [.website("https://www.budgetbytes.com/top-20-recipes-eating-healthy-budget/",

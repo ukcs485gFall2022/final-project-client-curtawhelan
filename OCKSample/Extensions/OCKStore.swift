@@ -172,7 +172,7 @@ extension OCKStore {
         threeMeals.card = .checklist
 
         var bathe = OCKTask(id: TaskID.bathe,
-                                 title: "Brush Teeth",
+                                 title: "Bathe",
                                  carePlanUUID: nil,
                                  schedule: brushTeethSchedule)
         bathe.impactsAdherence = true
