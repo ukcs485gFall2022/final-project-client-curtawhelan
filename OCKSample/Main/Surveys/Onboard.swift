@@ -101,16 +101,13 @@ extension Onboard {
         // xTODO: Set these to HealthKit info you want to display
         // by default.
         let healthKitTypesToWrite: Set<HKSampleType> = [
-            .quantityType(forIdentifier: .bodyMassIndex)!,
-            .quantityType(forIdentifier: .activeEnergyBurned)!,
-            .workoutType()
+            .quantityType(forIdentifier: .dietaryWater)!,
+            .quantityType(forIdentifier: .dietaryVitaminD)!
         ]
 
         let healthKitTypesToRead: Set<HKObjectType> = [
             .characteristicType(forIdentifier: .dateOfBirth)!,
-            .workoutType(),
-            .quantityType(forIdentifier: .dietaryWater)!,
-            .quantityType(forIdentifier: .appleExerciseTime)!
+            .quantityType(forIdentifier: .stepCount)!
         ]
 
         let healthKitPermissionType = ORKHealthKitPermissionType(
@@ -142,7 +139,7 @@ extension Onboard {
             identifier: "\(identifier()).completionStep"
         )
 
-        completionStep.title = "Enrollment Complete"
+        completionStep.title = "Onboarding Complete"
 
         completionStep.text = "Thank you for completing the onboarding survey. \nYour Trek has only just begun!"
 

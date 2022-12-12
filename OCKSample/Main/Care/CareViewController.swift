@@ -224,6 +224,11 @@ class CareViewController: OCKDailyPageViewController {
                                                      eventQuery: .init(for: date),
                                                      storeManager: self.storeManager)]
 
+        case .grid:
+            return [OCKGridTaskViewController(task: task,
+                                              eventQuery: .init(for: date),
+                                              storeManager: self.storeManager)]
+
         case .simple:
             /*
              Since the kegel task is only scheduled every other day, there will be cases
@@ -291,10 +296,9 @@ class CareViewController: OCKDailyPageViewController {
 
             return [view.formattedHostingController()]
         case .link: // xTODO: change this from being hard coded
-            let linkView = LinkView(title: .init("Recipe Ideas"),
-                                    // swiftlint:disable:next line_length
-                                    links: [.website("https://www.budgetbytes.com/top-20-recipes-eating-healthy-budget/",
-                                                     title: "Healthy Recipes From BudgetBytes")])
+            let linkView = LinkView(title: .init("Get Up!"),
+                                    links: [.website("https://www.youtube.com/watch?v=enYdAxVcNZA",
+                                                     title: "Your New Morning Alarm by Mark Rebillet")])
             return [linkView.formattedHostingController()]
 
         case .survey:

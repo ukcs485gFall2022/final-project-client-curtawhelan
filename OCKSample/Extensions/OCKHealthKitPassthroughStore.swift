@@ -99,6 +99,6 @@ extension OCKHealthKitPassthroughStore {
         vitaminD.asset = "sun.max.fill"
         vitaminD.card = .numericProgress
 
-        try await addTasksIfNotPresent([steps, drinkingWater, vitaminD])
+        try await addTasksIfNotPresent([vitaminD, drinkingWater])
     }
 }

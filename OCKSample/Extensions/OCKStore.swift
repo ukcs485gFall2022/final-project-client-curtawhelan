@@ -113,6 +113,7 @@ extension OCKStore {
               let beforeBreakfast = Calendar.current.date(byAdding: .hour, value: 7, to: aFewDaysAgo),
               let afterBreakfast = Calendar.current.date(byAdding: .hour, value: 8, to: aFewDaysAgo),
               let afterLunch = Calendar.current.date(byAdding: .hour, value: 12, to: aFewDaysAgo),
+              let beforeDinner = Calendar.current.date(byAdding: .hour, value: 17, to: aFewDaysAgo),
               let afterDinner = Calendar.current.date(byAdding: .hour, value: 18, to: aFewDaysAgo),
               let beforeBed = Calendar.current.date(byAdding: .hour, value: 22, to: aFewDaysAgo)
 
@@ -122,13 +123,14 @@ extension OCKStore {
         }
 
         let mealSchedule = OCKSchedule(composing: [
-            OCKScheduleElement(start: afterBreakfast, end: nil,
+            OCKScheduleElement(start: afterBreakfast,
+                               end: nil,
                                interval: DateComponents(day: 1)),
-
-            OCKScheduleElement(start: afterLunch, end: nil,
+            OCKScheduleElement(start: afterLunch,
+                               end: nil,
                                interval: DateComponents(day: 1)),
-
-            OCKScheduleElement(start: afterDinner, end: nil,
+            OCKScheduleElement(start: afterDinner,
+                               end: nil,
                                interval: DateComponents(day: 1))
         ])
 
@@ -169,16 +171,58 @@ extension OCKStore {
                                                 interval: DateComponents(day: 1))
         let bathingSchedule = OCKSchedule(composing: [bathingElement])
         var bathe = OCKTask(id: TaskID.bathe,
-                                 title: "Bathe",
-                                 carePlanUUID: nil,
-                                 schedule: bathingSchedule)
+                            title: "Bathe",
+                            carePlanUUID: nil,
+                            schedule: bathingSchedule)
         bathe.impactsAdherence = true
         bathe.instructions = "Shower or take a bath every day"
         bathe.asset = "bathtub.fill"
         bathe.card = .grid
 
-        try await addTasksIfNotPresent([bathe, takeABreak, threeMeals, stretch])
+        let cleaningElement = OCKScheduleElement(start: beforeDinner,
+                                                 end: nil,
+                                                 interval: DateComponents(day: 2))
+        let cleaningSchedule = OCKSchedule(composing: [cleaningElement])
+        var clean = OCKTask(id: TaskID.clean,
+                            title: "Clean Up",
+                            carePlanUUID: nil,
+                            schedule: cleaningSchedule)
+        clean.impactsAdherence = true
+        clean.asset = "hands.sparkles.fill"
+        clean.card = .simple
+
+        let phoneElement = OCKScheduleElement(start: beforeBreakfast,
+                                              end: nil,
+                                              interval: DateComponents(day: 1),
+                                              duration: .hours(1))
+        let phoneSchedule = OCKSchedule(composing: [phoneElement])
+        var phone = OCKTask(id: TaskID.stayOffPhone,
+                            title: "Stay Off Your Phone",
+                            carePlanUUID: nil,
+                            schedule: phoneSchedule)
+        phone.impactsAdherence = true
+        phone.asset = "iphone.slash.circle"
+        phone.instructions = "Keep it away until after breakfast. Trust me."
+        phone.card = .instruction
+
+        let linkElement = OCKScheduleElement(start: thisMorning,
+                                             end: nil,
+                                             interval: DateComponents(day: 1))
+        let linkSchedule = OCKSchedule(composing: [linkElement])
+        var link = OCKTask(id: "Link",
+                           title: "Link",
+                           carePlanUUID: nil,
+                           schedule: linkSchedule)
+        link.impactsAdherence = false
+        link.card = .link
+
+        // these are ordered by earliest in the day to latest
+        try await addTasksIfNotPresent([bathe, clean, takeABreak, threeMeals, stretch, phone, link])
         try await addOnboardTask()
+
+        /*
+         START OF CONTACTS
+         */
 
         var contact1 = OCKContact(id: "jane", givenName: "Jane",
                                   familyName: "Daniels", carePlanUUID: nil)
