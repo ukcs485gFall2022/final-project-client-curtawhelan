@@ -8,9 +8,9 @@ Name of your final project
 <!--
 Give a short description on what your project accomplishes and what tools is uses. Basically, what problems does it solve and why it's different from other apps in the app store.
 -->
-An example application of [CareKit](https://github.com/carekit-apple/CareKit)'s OCKSample synchronizing CareKit data to the Cloud via [ParseCareKit](https://github.com/netreconlab/ParseCareKit).
+Trek Track utilizes [CareKit](https://github.com/carekit-apple/CareKit), [ParseCareKit](https://github.com/netreconlab/ParseCareKit), and ResearchKit to build the foundation of the app, store the data in the cloud and provide indepth data collection respectively.
 
-Trek Track is an application that primarily focuses on building good habits through simple daily tasks. These habits can help the user gain more control of their day-to-day life. This process must stay as simple as possible. That is why Trek Track includes a default daily schedule right out of the box. This schedule of tasks includes items such as eating three meals a day, resisting the urge to get on your phone first thing in the morning, logging breaks from work every hour, etc. All these tasks are organized by the order in which you are supposed to complete them, however, these schedules for the tasks are only suggestions allowing the user to complete them in any order. This is designed to help people get out of a rut without having to overthink it. The simplicity of Trek Track is what differentiates it from other habit-forming apps. Rather than providing a blank slate and potentially overwhelming the user, Trek Track gives the user a starting point that focuses on the little things and attempts to emphasize how important they are to improving everyday life.
+Trek Track is an application that focuses on building good habits through simple daily tasks. These habits can help the user gain more control of their day-to-day life. This process must stay as simple as possible. That is why Trek Track includes a default daily schedule right out of the box. This schedule of tasks includes items such as eating three meals a day, resisting the urge to get on your phone first thing in the morning, logging breaks from work every hour, etc. All these tasks are organized by the order in which you are supposed to complete them, however, these schedules for the tasks are only suggestions allowing the user to complete them in any order. This is designed to help people get out of a rut without having to overthink it. The simplicity of Trek Track is what differentiates it from other habit-forming apps. Rather than providing a blank slate and potentially overwhelming the user, Trek Track gives the user a starting point that focuses on the little things and attempts to emphasize how important they are to improving everyday life.
 
 ### Demo Video
 <!--
@@ -26,7 +26,7 @@ alt="Sample demo video" width="240" height="180" border="10" /></a>
 <!--
 Describe the types of users your app is designed for and who will benefit from your app.
 -->
-
+Trek Track is designed for people who find themselves lacking the motivation to do even the most basic tasks. Whether they are depressed, looking for a change, or both. Trek Track can kickstart their journey right out of the box. Trek Track is not a fix-all for the users' problems, but it can help encourage them to seize the day and feel accomplished when they end the day and can see all the productive things they did. It is for those people who want to build long-lasting daily habits. That is why almost every task is assigned every day or every other day. Trek Track is not designed for those who want to lay out their calendar for the month. It is for those who want to work on focusing on what they can do today.
 <!--
 In addition, you can drop screenshots directly into your README file to add them to your README. Take these from your presentations.
 -->
