@@ -1,7 +1,7 @@
 <!--
 Name of your final project
 -->
-# final-app-name
+# Treck Track
 ![Swift](https://img.shields.io/badge/swift-5.5-brightgreen.svg) ![Xcode 13.2+](https://img.shields.io/badge/xcode-13.2%2B-blue.svg) ![iOS 15.0+](https://img.shields.io/badge/iOS-15.0%2B-blue.svg) ![watchOS 8.0+](https://img.shields.io/badge/watchOS-8.0%2B-blue.svg) ![CareKit 2.1+](https://img.shields.io/badge/CareKit-2.1%2B-red.svg) ![ci](https://github.com/netreconlab/CareKitSample-ParseCareKit/workflows/ci/badge.svg?branch=main)
 
 ## Description
@@ -9,6 +9,8 @@ Name of your final project
 Give a short description on what your project accomplishes and what tools is uses. Basically, what problems does it solve and why it's different from other apps in the app store.
 -->
 An example application of [CareKit](https://github.com/carekit-apple/CareKit)'s OCKSample synchronizing CareKit data to the Cloud via [ParseCareKit](https://github.com/netreconlab/ParseCareKit).
+
+Trek Track is an application that primarily focuses on building good habits through simple daily tasks. These habits can help the user gain more control of their day-to-day life. This process must stay as simple as possible. That is why Trek Track includes a default daily schedule right out of the box. This schedule of tasks includes items such as eating three meals a day, resisting the urge to get on your phone first thing in the morning, logging breaks from work every hour, etc. All these tasks are organized by the order in which you are supposed to complete them, however, these schedules for the tasks are only suggestions allowing the user to complete them in any order. This is designed to help people get out of a rut without having to overthink it. The simplicity of Trek Track is what differentiates it from other habit-forming apps. Rather than providing a blank slate and potentially overwhelming the user, Trek Track gives the user a starting point that focuses on the little things and attempts to emphasize how important they are to improving everyday life.
 
 ### Demo Video
 <!--
