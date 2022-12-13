@@ -9,17 +9,18 @@
 import Foundation
 import CareKitStore
 import os.log
+import HealthKit
 
 class TaskViewModel: ObservableObject {
 
     @Published var title = ""
     @Published var instructions = ""
     @Published var motivation = ""
-
-    @Published var selectedCard: CareKitCard = .button
+    @Published var selectedHealthKitTask: HKQuantityTypeIdentifier = .appleExerciseTime
+    @Published var selectedHealthKitCard: CareKitCard = .numericProgress
+    @Published var selectedCareKitCard: CareKitCard = .button
     @Published var selectedDay: WeekDays = .monday
     @Published var selectedTypeOfTask: TypeOfTask = .normal
-
     @Published var error: AppError? {
         willSet {
             DispatchQueue.main.async {
@@ -44,7 +45,7 @@ class TaskViewModel: ObservableObject {
                                                   end: nil,
                                                   text: nil))
         task.instructions = instructions
-        task.card = selectedCard
+        task.card = selectedCareKitCard
         do {
             try await appDelegate.storeManager.addTasksIfNotPresent([task])
             Logger.task.info("Saved task: \(task.id, privacy: .private)")
@@ -69,11 +70,11 @@ class TaskViewModel: ObservableObject {
                                                                     start: Date(),
                                                                     end: nil,
                                                                     text: nil),
-                                             healthKitLinkage: .init(quantityIdentifier: .electrodermalActivity,
+                                             healthKitLinkage: .init(quantityIdentifier: selectedHealthKitTask,
                                                                      quantityType: .discrete,
                                                                      unit: .count()))
         healthKitTask.instructions = instructions
-        healthKitTask.card = selectedCard
+        healthKitTask.card = selectedHealthKitCard
         do {
             try await appDelegate.storeManager.addTasksIfNotPresent([healthKitTask])
             Logger.task.info("Saved HealthKitTask: \(healthKitTask.id, privacy: .private)")
