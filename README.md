@@ -18,6 +18,10 @@ Add the public link to your YouTube or video posted elsewhere.
 -->
 To learn more about this application, watch the video below:
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=asLSwNE51Sw
+" target="_blank"><img src="http://img.youtube.com/vi/asLSwNE51Sw/0.jpg" 
+alt="mydemo" width="240" height="180" border="10" /></a>
+
 https://youtu.be/asLSwNE51Sw
 
 ### Designed for the following users
@@ -28,20 +32,15 @@ Trek Track is designed for people who find themselves lacking the motivation to 
 <!--
 In addition, you can drop screenshots directly into your README file to add them to your README. Take these from your presentations.
 -->
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 23 44](https://user-images.githubusercontent.com/85813299/207330761-ce457420-4f1d-4c02-98a4-e2a15d48b829.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 33 15](https://user-images.githubusercontent.com/85813299/207328689-33e5d46f-250d-4da3-83ca-4dbc9b2e5b29.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 34 01](https://user-images.githubusercontent.com/85813299/207328712-5fc64615-6ea1-45d8-9629-b6820d1d7dcc.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 34 09](https://user-images.githubusercontent.com/85813299/207328731-fb018526-0359-4358-84ae-c093d740aa72.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 34 39](https://user-images.githubusercontent.com/85813299/207328905-88214503-db11-472c-8da0-e67b9220bfcb.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 35 04](https://user-images.githubusercontent.com/85813299/207329059-df76b06b-b859-4d5d-b571-c249a4d33bdc.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 35 10](https://user-images.githubusercontent.com/85813299/207329109-02117d2e-7609-422d-afcd-e802ab645b7e.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 35 22](https://user-images.githubusercontent.com/85813299/207329147-fbaab9a0-4f97-40d1-b42a-55353d0f650e.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 24 43](https://user-images.githubusercontent.com/85813299/207332002-8235ab75-d630-4f51-b039-ea6e9847bf11.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 24 51](https://user-images.githubusercontent.com/85813299/207332048-63331aea-b044-4f71-93f3-0a557a9d58c1.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 24 56](https://user-images.githubusercontent.com/85813299/207332076-c9c607cd-3924-486e-9df9-3df28d23c351.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 25 05](https://user-images.githubusercontent.com/85813299/207332113-a9aae716-33fc-4f6c-8f57-b6d04952053a.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 25 30](https://user-images.githubusercontent.com/85813299/207332137-876c8d78-c737-4721-a813-2544cec523ae.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 25 56](https://user-images.githubusercontent.com/85813299/207332183-a9d463f2-0f66-42e9-962a-d554bca012f4.png)
+<img width="200" alt="homescreen" src="https://user-images.githubusercontent.com/85813299/207330761-ce457420-4f1d-4c02-98a4-e2a15d48b829.png"><img width="200" alt="onboard" src="https://user-images.githubusercontent.com/85813299/207328689-33e5d46f-250d-4da3-83ca-4dbc9b2e5b29.png"><img width="200" alt="onboard2" src="https://user-images.githubusercontent.com/85813299/207328712-5fc64615-6ea1-45d8-9629-b6820d1d7dcc.png">
+
+<img width="200" alt="onboard3" src="https://user-images.githubusercontent.com/85813299/207328731-fb018526-0359-4358-84ae-c093d740aa72.png"><img width="200" alt="onboard4" src="https://user-images.githubusercontent.com/85813299/207328905-88214503-db11-472c-8da0-e67b9220bfcb.png"><img width="200" alt="onboard5" src="https://user-images.githubusercontent.com/85813299/207329059-df76b06b-b859-4d5d-b571-c249a4d33bdc.png">
+
+<img width="200" alt="onboard6" src="https://user-images.githubusercontent.com/85813299/207329109-02117d2e-7609-422d-afcd-e802ab645b7e.png"><img width="200" alt="careview" src="https://user-images.githubusercontent.com/85813299/207329147-fbaab9a0-4f97-40d1-b42a-55353d0f650e.png"><img width="200" alt="careview2" src = "https://user-images.githubusercontent.com/85813299/207332002-8235ab75-d630-4f51-b039-ea6e9847bf11.png">
+
+<img width="200" alt="careview3" src = "https://user-images.githubusercontent.com/85813299/207332048-63331aea-b044-4f71-93f3-0a557a9d58c1.png"><img width="200" alt="careview4" src = "https://user-images.githubusercontent.com/85813299/207332076-c9c607cd-3924-486e-9df9-3df28d23c351.png"><img width="200" alt="careview5" src = "https://user-images.githubusercontent.com/85813299/207332113-a9aae716-33fc-4f6c-8f57-b6d04952053a.png">
+
+<img width="200" alt="careview6" src= "https://user-images.githubusercontent.com/85813299/207332137-876c8d78-c737-4721-a813-2544cec523ae.png"><img width="200" alt="careview7" src= "https://user-images.githubusercontent.com/85813299/207332183-a9d463f2-0f66-42e9-962a-d554bca012f4.png">
 
 <!--
 List all of the members who developed the project and
