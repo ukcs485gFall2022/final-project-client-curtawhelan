@@ -15,6 +15,7 @@ import os.log
 struct ProfileView: View {
 
     @Environment(\.tintColor) private var tintColor
+    @Environment(\.tintColorFlip) private var tintColorFlip
     @StateObject var viewModel = ProfileViewModel()
     @ObservedObject var loginViewModel: LoginViewModel
 
@@ -63,7 +64,7 @@ struct ProfileView: View {
                         .padding()
                         .frame(width: 300, height: 50)
                 })
-                .background(Color(.green))
+                .background(Color(tintColorFlip))
                 .cornerRadius(15)
 
                 // Notice that "action" is a closure (which is essentially
@@ -79,7 +80,7 @@ struct ProfileView: View {
                         .padding()
                         .frame(width: 300, height: 50)
                 })
-                .background(Color(.red))
+                .background(Color(tintColor))
                 .cornerRadius(15)
             }
             .toolbar {
@@ -101,7 +102,7 @@ struct ProfileView: View {
                         TaskView()
                     }
                 }
-            }
+            } .foregroundColor(Color(tintColorFlip))
             .sheet(isPresented: $viewModel.isPresentingImagePicker) {
                 ImagePicker(image: $viewModel.profileUIImage)
             }
