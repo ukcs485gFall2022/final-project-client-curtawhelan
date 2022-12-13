@@ -74,7 +74,6 @@ private extension TaskView {
                         Text(item.rawValue)
                     }
                 }
-                Toggle("Select Specific Day", isOn: $repeating)
             case 1: // health kit task
                 TextField("Title", text: $viewModel.title)
                 TextField("Instructions", text: $viewModel.instructions)
@@ -90,11 +89,12 @@ private extension TaskView {
                     Text("Numeric Progess").tag(CareKitCard.numericProgress)
                     Text("Labled Value").tag(CareKitCard.labeledValue)
                 }
+
             default:
                 TextField("Error", text: $viewModel.title)
             }
-
-            Picker("Schedule", selection: $viewModel.selectedDay) {
+            Toggle("Select Starting Day", isOn: $repeating)
+            Picker("Starting Day", selection: $viewModel.selectedDay) {
                 ForEach(WeekDays.allCases) { day in
                     Text(day.rawValue.capitalized)
                 }
@@ -103,6 +103,8 @@ private extension TaskView {
 
         } header: {
             Text("General")
+        } footer: {
+            Text("Turn Select Starting Day Off to Start Today!")
         }
         .headerProminence(.increased)
     }

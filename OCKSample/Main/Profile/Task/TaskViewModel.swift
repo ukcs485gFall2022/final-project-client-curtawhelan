@@ -21,6 +21,9 @@ class TaskViewModel: ObservableObject {
     @Published var selectedCareKitCard: CareKitCard = .button
     @Published var selectedDay: WeekDays = .monday
     @Published var selectedTypeOfTask: TypeOfTask = .normal
+    @Published var schedulePickerSegmentValue = 0
+    @Published var timeOfTaskPickerSegmentValue = 0
+
     @Published var error: AppError? {
         willSet {
             DispatchQueue.main.async {
