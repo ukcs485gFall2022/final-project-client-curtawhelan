@@ -37,7 +37,7 @@ List all of the members who developed the project and
 link to each members respective GitHub profile
 -->
 Developed by: 
-- [member1](https://github.com/cbaker6) - `STUDENTS_UNIVERSITY`, `MAJOR`
+- [Curt Whelan](https://github.com/curtawhelan) - `University of Kentucky`, `Computer Science`
 
 ParseCareKit synchronizes the following entities to Parse tables/classes using [Parse-Swift](https://github.com/parse-community/Parse-Swift):
 
@@ -60,42 +60,44 @@ What features were added by you, this should be descriptions of features added f
 <!--
 This is from the checkist from the final [Code](https://uk.instructure.com/courses/2030626/assignments/11151475). You should mark completed items with an x and leave non-completed items empty
 -->
-- [ ] Signup/Login screen tailored to app
+- [x] Signup/Login screen tailored to app
 - [ ] Signup/Login with email address
-- [ ] Custom app logo
-- [ ] Custom styling
-- [ ] Add at least **5 new OCKTask/OCKHealthKitTasks** to your app
-  - [ ] Have a minimum of 7 OCKTask/OCKHealthKitTasks in your app
-  - [ ] 3/7 of OCKTasks should have different OCKSchedules than what's in the original app
-- [ ] Use at least 5/7 card below in your app
-  - [ ] InstructionsTaskView - typically used with a OCKTask
-  - [ ] SimpleTaskView - typically used with a OCKTask
-  - [ ] Checklist - typically used with a OCKTask
-  - [ ] Button Log - typically used with a OCKTask
-  - [ ] GridTaskView - typically used with a OCKTask
-  - [ ] NumericProgressTaskView (SwiftUI) - typically used with a OCKHealthKitTask
+- [x] Custom app logo
+- [x] Custom styling
+- [x] Add at least **5 new OCKTask/OCKHealthKitTasks** to your app
+  - [x] Have a minimum of 7 OCKTask/OCKHealthKitTasks in your app
+  - [x] 3/7 of OCKTasks should have different OCKSchedules than what's in the original app
+- [x] Use at least 5/7 card below in your app
+  - [x] InstructionsTaskView - typically used with a OCKTask
+  - [x] SimpleTaskView - typically used with a OCKTask
+  - [x] Checklist - typically used with a OCKTask
+  - [x] Button Log - typically used with a OCKTask
+  - [x] GridTaskView - typically used with a OCKTask
+  - [x] NumericProgressTaskView (SwiftUI) - typically used with a OCKHealthKitTask
   - [ ] LabeledValueTaskView (SwiftUI) - typically used with a OCKHealthKitTask
-- [ ] Add the LinkView (SwiftUI) card to your app
+- [x] Add the LinkView (SwiftUI) card to your app
 - [ ] Replace the current TipView with a class with CustomFeaturedContentView that subclasses OCKFeaturedContentView. This card should have an initializer which takes any link
-- [ ] Tailor the ResearchKit Onboarding to reflect your application
+- [x] Tailor the ResearchKit Onboarding to reflect your application
 - [ ] Add tailored check-in ResearchKit survey to your app
 - [ ] Add a new tab called "Insights" to MainTabView
-- [ ] Replace current ContactView with Searchable contact view
-- [ ] Change the ProfileView to use a Form view
+- [x] Replace current ContactView with Searchable contact view
+- [x] Change the ProfileView to use a Form view
 - [ ] Add at least two OCKCarePlan's and tie them to their respective OCKTask's and OCContact's 
 
 ## Wishlist features
 <!--
 Describe at least 3 features you want to add in the future before releasing your app in the app-store
 -->
-1. feature one
-2. feature two
-3. feature three
+1. I would like to add the feature for the user to modify the colors of the app, allowing users to express themselves however they want.
+2. The ability for the user to preview their card so they can know what to expect before officially adding it to their account.
+3. A timer that locks the user into the app for a certain amount of time so that they can be more present in a room or focus on a task.
+4. Allow the user to be able to delete their custom tasks, or modify the built in tasks.
 
 ## Challenges faced while developing
 <!--
 Describe any challenges you faced with learning Swift, your baseline app, or adding features. You can describe how you overcame them.
 -->
+I ran into a lot of issues during the development of Trek Track. The first and most prominent taking on a project of this size. When working with so many files of so many different types it can be difficult to keep track of the details such as the scope of your implementation or maintaining an organized MVVM-based file structure. All these files caused me problems in terms of the sometimes-overwhelming amount of data types in this project. Learning how to initialize, modify and utilize these data structures took a lot of reading of the documentation. The third and final challenge that stuck out to me the most was keeping up with a fast-paced development cycle. This affected development in two different ways. The first being that I had to stay at a steady but expedited pace, which tends to be difficult for me as a developer as I will often stick to a problem until it is done. This meant it was very easy to fall behind and then have long days to catch back up again.
 
 ## Setup Your Parse Server
 
