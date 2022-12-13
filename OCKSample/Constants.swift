@@ -74,26 +74,70 @@ enum Constants {
     static let requestSync = "requestSync"
     static let progressUpdate = "progressUpdate"
     static let finishedAskingForPermission = "finishedAskingForPermission"
-    static let completedFirstSyncAfterLogin = "completedFirstSyncAfterLogin"
+    static let shouldRefreshView = "shouldRefreshView"
     static let userLoggedIn = "userLoggedIn"
     static let storeInitialized = "storeInitialized"
     static let userTypeKey = "userType"
+    static let card = "card"
+    static let survey = "survey"
 }
 
 enum MainViewPath {
     case tabs
 }
 
+enum CareKitCard: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case button = "Button"
+    case checklist = "Checklist"
+    case featured = "Featured"
+    case grid = "Grid"
+    case instruction = "Instruction"
+    case labeledValue = "Labeled Value"
+    case link = "Link"
+    case numericProgress = "Numeric Progress"
+    case simple = "Simple"
+    case survey = "Survey"
+}
+
+enum CarePlanID: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case health = "health"// Add custom id's for your Care Plans, these are examples
+    case checkIn = "check in"
+    case mindful = "mindful"
+ }
+
 enum TaskID {
-    static let doxylamine = "doxylamine"
-    static let nausea = "nausea"
     static let stretch = "stretch"
+    static let stayOffPhone = "stayOffPhone"
     static let kegels = "kegels"
     static let steps = "steps"
+    static let drinkingWater = "drinkingWater"
+    static let vitaminD = "vitaminD"
+    static let takeABreak = "takeABreak"
+    static let threeMeals = "threeMeals"
+    static let brushTeeth = "brushTeeth"
+    static let bathe = "bathe"
+    static let clean = "clean"
 
     static var ordered: [String] {
-        [Self.steps, Self.doxylamine, Self.kegels, Self.stretch, Self.nausea]
+        [Self.steps, Self.drinkingWater,
+         Self.vitaminD, Self.stretch,
+         Self.takeABreak, Self.threeMeals,
+         Self.brushTeeth, Self.stayOffPhone]
     }
+}
+
+enum WeekDays: String, CaseIterable, Identifiable {
+    case sunday, monday, tuesday, wednesday, thursday, friday, saturday
+
+    var id: Self { self }
+}
+
+enum TypeOfTask: String, CaseIterable, Identifiable {
+    case normal, healthKit
+
+    var id: Self { self }
 }
 
 enum UserType: String, Codable {

@@ -42,22 +42,63 @@ extension OCKHealthKitPassthroughStore {
         }
     }
 
-    func populateSampleData() async throws {
+    /*
+        xTODO: You need to tie an OCPatient and CarePlan to these tasks,
+    */
 
-        let schedule = OCKSchedule.dailyAtTime(
+    func populateSampleData(_ patientUUID: UUID? = nil) async throws {
+
+        // let carePlanUUID = try await OCKStore.getCarePlanUUIDs().first
+
+        let stepSchedule = OCKSchedule.dailyAtTime(
             hour: 8, minutes: 0, start: Date(), end: nil, text: nil,
             duration: .hours(12), targetValues: [OCKOutcomeValue(2000.0, units: "Steps")])
+
+        let waterSchedule = OCKSchedule.dailyAtTime(
+            hour: 8, minutes: 0, start: Date(), end: nil, text: nil,
+            duration: .allDay, targetValues: [OCKOutcomeValue(3.0, units: "Liters")])
+
+        let vitaminDSchedule = OCKSchedule.dailyAtTime(
+            hour: 8, minutes: 0, start: Date(), end: nil, text: nil,
+            duration: .allDay, targetValues: [OCKOutcomeValue(600.0, units: "International Unit")])
 
         var steps = OCKHealthKitTask(
             id: TaskID.steps,
             title: "Steps",
             carePlanUUID: nil,
-            schedule: schedule,
+            schedule: stepSchedule,
             healthKitLinkage: OCKHealthKitLinkage(
                 quantityIdentifier: .stepCount,
                 quantityType: .cumulative,
                 unit: .count()))
         steps.asset = "figure.walk"
-        try await addTasksIfNotPresent([steps])
+        steps.card = .numericProgress
+
+        var drinkingWater = OCKHealthKitTask(
+            id: TaskID.drinkingWater,
+            title: "Water Intake (L)",
+            carePlanUUID: nil,
+            schedule: waterSchedule,
+            healthKitLinkage: OCKHealthKitLinkage(
+                quantityIdentifier: .dietaryWater,
+                quantityType: .cumulative,
+                unit: .liter()))
+        drinkingWater.asset = "drop.circle.fill"
+        drinkingWater.card = .numericProgress
+        drinkingWater.instructions = "Tip: Drink water throughout the day, not all at once"
+
+        var vitaminD = OCKHealthKitTask(
+            id: TaskID.vitaminD,
+            title: "Vitamin D Intake (IU)",
+            carePlanUUID: nil,
+            schedule: vitaminDSchedule,
+            healthKitLinkage: OCKHealthKitLinkage(
+                quantityIdentifier: .dietaryVitaminD,
+                quantityType: .cumulative,
+                unit: .internationalUnit()))
+        vitaminD.asset = "sun.max.fill"
+        vitaminD.card = .numericProgress
+
+        try await addTasksIfNotPresent([vitaminD, drinkingWater])
     }
 }

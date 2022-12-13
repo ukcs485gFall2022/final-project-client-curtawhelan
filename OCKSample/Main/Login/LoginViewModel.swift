@@ -83,7 +83,6 @@ class LoginViewModel: ObservableObject {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             NotificationCenter.default.post(.init(name: Notification.Name(rawValue: Constants.requestSync)))
-            Utility.requestHealthKitPermissions()
         }
 
         // Setup installation to receive push notifications
@@ -117,8 +116,16 @@ class LoginViewModel: ObservableObject {
             throw AppError.couldntCast
         }
 
-        try await appDelegate.store?.populateSampleData()
-        try await appDelegate.healthKitStore.populateSampleData()
+        // Added code to create a contact for the respective signed up user
+        let newContact = OCKContact(id: remoteUUID.uuidString,
+                                    name: newPatient.name,
+                                    carePlanUUID: nil)
+
+        // This is new contact that has never been saved before
+        _ = try await storeManager.store.addAnyContact(newContact)
+
+        try await appDelegate.store?.populateSampleData(patient.uuid)
+        try await appDelegate.healthKitStore.populateSampleData(patient.uuid)
         appDelegate.parseRemote.automaticallySynchronizes = true
 
         // Post notification to sync
@@ -141,6 +148,7 @@ class LoginViewModel: ObservableObject {
     func signup(_ type: UserType,
                 username: String,
                 password: String,
+                email: String? = nil,
                 firstName: String,
                 lastName: String) async {
         do {
@@ -152,6 +160,7 @@ class LoginViewModel: ObservableObject {
             // Set any properties you want saved on the user befor logging in.
             newUser.username = username.lowercased()
             newUser.password = password
+            newUser.email = email
             let user = try await newUser.signup()
             Logger.login.info("Parse signup successful: \(user)")
             let patient = try await savePatientAfterSignUp(type,

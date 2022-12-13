@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>ApplicationID</key>
-	<string>E036A0C5-6829-4B40-9B3B-3E05F6DF32B2</string>
+	<string>d85f1968fcb2750eae5dfa8ac4a9dab3f1506cfb759453d6856359a62239b19f</string>
 	<key>Server</key>
-	<string>http://localhost:1337/parse</string>
+	<string>https://trek-trackre.herokuapp.com/parse</string>
 	<key>LiveQueryServer</key>
 	<string></string>
 	<key>UseTransactions</key>
