@@ -18,9 +18,7 @@ Add the public link to your YouTube or video posted elsewhere.
 -->
 To learn more about this application, watch the video below:
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=mib_YioKAQQ
-" target="_blank"><img src="http://img.youtube.com/vi/mib_YioKAQQ/0.jpg" 
-alt="Sample demo video" width="240" height="180" border="10" /></a>
+https://youtu.be/asLSwNE51Sw
 
 ### Designed for the following users
 <!--
@@ -30,7 +28,20 @@ Trek Track is designed for people who find themselves lacking the motivation to 
 <!--
 In addition, you can drop screenshots directly into your README file to add them to your README. Take these from your presentations.
 -->
-<img src="https://user-images.githubusercontent.com/8621344/101721031-06869500-3a75-11eb-9631-88927e9c8f00.png" width="300"> <img src="https://user-images.githubusercontent.com/8621344/101721111-33d34300-3a75-11eb-885e-4a6fc96dbd35.png" width="300"> <img src="https://user-images.githubusercontent.com/8621344/101721146-48afd680-3a75-11eb-955a-7848146a9d6f.png" width="300"><img src="https://user-images.githubusercontent.com/8621344/101721182-5cf3d380-3a75-11eb-99c9-bde40477acf3.png" width="300">
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 23 44](https://user-images.githubusercontent.com/85813299/207330761-ce457420-4f1d-4c02-98a4-e2a15d48b829.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 33 15](https://user-images.githubusercontent.com/85813299/207328689-33e5d46f-250d-4da3-83ca-4dbc9b2e5b29.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 34 01](https://user-images.githubusercontent.com/85813299/207328712-5fc64615-6ea1-45d8-9629-b6820d1d7dcc.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 34 09](https://user-images.githubusercontent.com/85813299/207328731-fb018526-0359-4358-84ae-c093d740aa72.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 34 39](https://user-images.githubusercontent.com/85813299/207328905-88214503-db11-472c-8da0-e67b9220bfcb.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 35 04](https://user-images.githubusercontent.com/85813299/207329059-df76b06b-b859-4d5d-b571-c249a4d33bdc.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 35 10](https://user-images.githubusercontent.com/85813299/207329109-02117d2e-7609-422d-afcd-e802ab645b7e.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 04 35 22](https://user-images.githubusercontent.com/85813299/207329147-fbaab9a0-4f97-40d1-b42a-55353d0f650e.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 24 43](https://user-images.githubusercontent.com/85813299/207332002-8235ab75-d630-4f51-b039-ea6e9847bf11.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 24 51](https://user-images.githubusercontent.com/85813299/207332048-63331aea-b044-4f71-93f3-0a557a9d58c1.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 24 56](https://user-images.githubusercontent.com/85813299/207332076-c9c607cd-3924-486e-9df9-3df28d23c351.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 25 05](https://user-images.githubusercontent.com/85813299/207332113-a9aae716-33fc-4f6c-8f57-b6d04952053a.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 25 30](https://user-images.githubusercontent.com/85813299/207332137-876c8d78-c737-4721-a813-2544cec523ae.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-13 at 08 25 56](https://user-images.githubusercontent.com/85813299/207332183-a9d463f2-0f66-42e9-962a-d554bca012f4.png)
 
 <!--
 List all of the members who developed the project and
@@ -38,6 +49,9 @@ link to each members respective GitHub profile
 -->
 Developed by: 
 - [Curt Whelan](https://github.com/curtawhelan) - `University of Kentucky`, `Computer Science`
+
+Base Code Provided by:
+- [Corey Baker](https://github.com/cbaker6) - `Professor at University of Kentucky`, `Computer Science`
 
 ParseCareKit synchronizes the following entities to Parse tables/classes using [Parse-Swift](https://github.com/parse-community/Parse-Swift):
 
@@ -55,13 +69,25 @@ ParseCareKit synchronizes the following entities to Parse tables/classes using [
 What features were added by you, this should be descriptions of features added from the [Code](https://uk.instructure.com/courses/2030626/assignments/11151475) and [Demo](https://uk.instructure.com/courses/2030626/assignments/11151413) parts of the final. Feel free to add any figures that may help describe a feature. Note that there should be information here about how the OCKTask/OCKHealthTask's and OCKCarePlan's you added pertain to your app.
 -->
 ## Contributions/Features
-
+- I stylized the app to have a uniform look with color coding as well.
+- I implemented the beginning steps of the ResearchKit and fully converted the onboarding task, and consent task, to suit my app.
+- I used an AI program to generate my app logo and stylized my app around it.
+- I created a login page that looks very different from the original app and fixed a bug from the midterm where I had two email fields in the signup section.
+- I created five of my OCKTasks: Avoid the phone for an hour in the morning, eating three meals a day, take a break from work every hour, clean up, and bathe. All of which are different card styles.
+- I created two HealthKit Tasks: Water Intake (L) and Vitamin D Intake (IU), both of which were NumericProgress cards.
+- Gave users the ability to make their HealthKit tasks.
+- Gave users the ability to make their CareKit tasks, including fields for Title, Instructions, and Motivation, as well as the choice of what card style they want.
+- Revamped the Profile View to use a form to gather Patient and Contact data. I also added a MyContact View inside the Profile View which only displays the current user’s contact and updated the information inside their contact if the information was changed.
+- Revamped the Contact View to allow for contacts to be searched for, as well as filter out the current user’s contact.
+- Added a link card to the top of the Care View which links to a high-energy song on YouTube to try and motivate users
+- Attempted to implement a more fleshed-out custom scheduling system
+- Created various Views, ViewModels, ViewModelControllers, Extensions, Constants, etc.
 ## Final Checklist
 <!--
 This is from the checkist from the final [Code](https://uk.instructure.com/courses/2030626/assignments/11151475). You should mark completed items with an x and leave non-completed items empty
 -->
 - [x] Signup/Login screen tailored to app
-- [ ] Signup/Login with email address
+- [x] Signup/Login with email address
 - [x] Custom app logo
 - [x] Custom styling
 - [x] Add at least **5 new OCKTask/OCKHealthKitTasks** to your app
