@@ -295,8 +295,8 @@ class CareViewController: OCKDailyPageViewController {
                 .careKitStyle(CustomStylerKey.defaultValue)
 
             return [view.formattedHostingController()]
-        case .link: // xTODO: change this from being hard coded
-            let linkView = LinkView(title: .init("Get Up!"),
+        case .link:
+            let linkView = LinkView(title: .init("Get Up!").foregroundColor(Color(TintColorFlipKey.defaultValue)),
                                     links: [.website("https://www.youtube.com/watch?v=enYdAxVcNZA",
                                                      title: "Your New Morning Alarm by Mark Rebillet")])
             return [linkView.formattedHostingController()]

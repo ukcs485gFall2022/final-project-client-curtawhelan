@@ -11,11 +11,11 @@ import HealthKit
 import ParseSwift
 
 struct TaskView: View {
-
+    @Environment(\.tintColor) var tintColor
+    @Environment(\.tintColorFlip) var tintColorFlip
     @Environment(\.dismiss) private var dismiss
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel = TaskViewModel()
-    @State var repeating = true
     @State var taskPickerSegmentValue = 0
     @State var healthKitTaskPickerSegmentValue = 0
 
@@ -46,12 +46,14 @@ struct TaskView: View {
                 }
             }
         }
+        .foregroundColor(Color(tintColorFlip))
     }
 }
 
 struct TaskView_Previews: PreviewProvider {
     static var previews: some View {
         TaskView()
+            .tint(Color(TintColorFlipKey.defaultValue))
     }
 }
 
@@ -63,6 +65,7 @@ private extension TaskView {
                 Text("HealthKit Task").tag(1)
             }
             .pickerStyle(.segmented)
+            .background(Color(tintColor))
 
             switch taskPickerSegmentValue {
             case 0: // care kit task
@@ -93,20 +96,22 @@ private extension TaskView {
             default:
                 TextField("Error", text: $viewModel.title)
             }
-            Toggle("Select Starting Day", isOn: $repeating)
+
+            Toggle("Select Starting Day", isOn: $viewModel.selectStartingDay)
             Picker("Starting Day", selection: $viewModel.selectedDay) {
                 ForEach(WeekDays.allCases) { day in
                     Text(day.rawValue.capitalized)
                 }
             }
-            .disabled(repeating == false)
+            .disabled(viewModel.selectStartingDay == false)
 
         } header: {
             Text("General")
         } footer: {
-            Text("Turn Select Starting Day Off to Start Today!")
+            Text("Turn on 'Select Starting Day' to delay your task's start!")
         }
         .headerProminence(.increased)
+        .foregroundColor(Color(tintColorFlip))
     }
 }
 

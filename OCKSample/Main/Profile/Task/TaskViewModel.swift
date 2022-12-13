@@ -23,6 +23,7 @@ class TaskViewModel: ObservableObject {
     @Published var selectedTypeOfTask: TypeOfTask = .normal
     @Published var schedulePickerSegmentValue = 0
     @Published var timeOfTaskPickerSegmentValue = 0
+    @Published var selectStartingDay = false
 
     @Published var error: AppError? {
         willSet {
